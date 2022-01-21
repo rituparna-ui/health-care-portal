@@ -1,24 +1,24 @@
 import './App.css';
+import React from 'react';
+import {Route, BrowserRouter,Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Resources from './components/Resources';
 import UserSearch from './components/UserSearch';
-import {Route} from 'react-router-dom';
+import Home from './components/Home';
+
 
 function App() {
   return (
-    <div>
-      <Navbar></Navbar>
-      <Route exact path="">
-        <Home/>
-
-      </Route>
-      <Route path='/usersearch'>
-        <UserSearch></UserSearch>
-      </Route>
-      <Route path='/resources'>
-         <Resources></Resources>
-      </Route>
-    </div>
+    <BrowserRouter>
+       <Routes>
+       
+       <Route path="/" element={<Home />} />
+       <Route path="/usersearch" element={<UserSearch />} />
+       <Route path="/resources" element={<Resources />} />
+        
+         
+       </Routes>
+    </BrowserRouter>
   );
 }
 
