@@ -5,7 +5,7 @@ const UserSearch = () =>{
     return (
         <>
         <Navbar></Navbar>
-        <h1 class='pt-5'>User Search</h1>
+        <h1 class='pt-5 text-center'>User Search</h1>
         </>
     )
 
