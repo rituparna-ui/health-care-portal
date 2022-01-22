@@ -10,7 +10,7 @@ const UserSearch = () =>{
     const[longitude,setLongitude]=useState(0);
     const[qty,setQty]=useState(0);
     
-    const[buttonClick,setButtonClick]=useState('');
+    const[buttonClick,setButtonClick]=useState(0);
     const getLocation =(location)=>{
         var string=location
         string = string.replace(/ /g,'+');
@@ -19,11 +19,15 @@ const UserSearch = () =>{
         .then(res=>{
             console.log(res.data['latt'])
             setLatitude(res.data['latt'])
-            setLongitude(res.data['long'])
+            setLongitude(res.data['longt'])
+            setButtonClick(1);
         })
         .catch(err=>{
             console.log(err);
         })
+       
+
+        
     }
     const handleClick=()=>{
         
@@ -31,9 +35,37 @@ const UserSearch = () =>{
         
         getLocation(location)
         
+            
+    
         
-       
+    }
+    const sendData= async()=>{
 
+        console.log(resource,qty)
+        const res= await fetch('/userSearch',{
+            method:'POST',
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                resource,
+                qty,
+                latitude,
+                longitude
+
+            })
+            
+        })
+
+        const response = await res.json()
+
+        if(response.status(200)){
+            console.log(response)
+        }
+
+    }
+    useEffect(() =>{
+        
         let data={
             search:resource,
             quantity:qty,
@@ -41,16 +73,10 @@ const UserSearch = () =>{
             long:longitude,
 
         }
+        sendData()
 
         
-        console.log(data)
-            
-    
-        
-    }
-    
-    useEffect(() =>{
-        
+        console.log(data,buttonClick)
     },[buttonClick])
 
     return (
