@@ -42,7 +42,7 @@ const UserSearch = () =>{
     const sendData= async()=>{
 
         console.log(resource,qty)
-        const res= await fetch('http://localhost:5000/userSearch',{
+        const res= await fetch('/userSearch',{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"
