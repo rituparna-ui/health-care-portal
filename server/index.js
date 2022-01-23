@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
 const DB = require('./src/utils/db');
 const api = require('./api');
 const auth = require('./src/middlewares/auth');
