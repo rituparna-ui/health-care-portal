@@ -24,6 +24,8 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.listen(PORT);
+
 DB()
   .then(() => {
     console.log('Db connected');
