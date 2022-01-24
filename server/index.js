@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
 const DB = require('./src/utils/db');
@@ -6,6 +7,7 @@ const api = require('./api');
 const auth = require('./src/middlewares/auth');
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1', api);
