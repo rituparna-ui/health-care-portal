@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-
+import './resource.css'
 import axios from 'axios';
 
 const Resources = () => {
@@ -17,7 +17,7 @@ const Resources = () => {
       locality.value
     );
 
-    axios.post('http://localhost:3000/api/v1/hospitals', {
+    axios.post('http://localhost:5000/api/v1/hospitals', {
       name: name.value,
       email: email.value,
       contact: contact.value,
@@ -31,16 +31,17 @@ const Resources = () => {
   return (
     <>
       <Navbar />
-      <div className="container2 mt-5">
+      <div className="container2 ">
         {' '}
-        <h1 class="pt-5"> RESOURCE DATABASE</h1>
+        <h1 class="pt-4 heading"> RESOURCE DATABASE</h1>
+        <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
       </div>
 
       <section className="signup">
-        <div className="container mt-5">
+        <div className="container mt-2">
           <div className="signup-content">
             <div className="signup-form">
-              <h2 className="form-title">REGISTRATION-RESOURCES</h2>
+              
               <form className="register-form" id="register-form">
                 <div className="form-group">
                   <label htmlFor="name">
@@ -78,30 +79,30 @@ const Resources = () => {
                     placeholder="Your Contact Number"
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-group d-flex flex-row">
                   <label htmlFor="medical equipment">
                     <i class="zmdi zmdi-hospital material-icons-name"></i>
                   </label>
-                  <select
+                  <select style={{width:'56%'}}
                     name="equip"
                     id="equip"
                     autoComplete="off"
                     placeholder="Medical Equipment"
                   >
+                    <option default>select</option>
                     <option>blood</option>
                     <option>oxygen cylinders</option>
                     <option>beds</option>
                   </select>
 
-                  <label htmlFor="Quantity">
-                    <i class="zmdi zmdi-circle material-icons-name"></i>
-                  </label>
+                  
                   <input
+                  style={{width:'20%'}}
                     type="text"
                     name="qty"
                     id="Quantity"
                     autoComplete="off"
-                    placeholder="Quantity"
+                    placeholder="Qty"
                   />
                 </div>
                 <div className="form-group">
@@ -134,7 +135,7 @@ const Resources = () => {
                     type="button"
                     name="signup"
                     id="signup"
-                    className="form-submit"
+                    className="form-submit "
                     value="SUBMIT"
                     onClick={handleClick}
                   />

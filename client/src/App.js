@@ -4,7 +4,8 @@ import {Route, BrowserRouter,Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Resources from './components/Resources';
 import UserSearch from './components/UserSearch';
-import VideoCall from './components/VideoCall'
+//import VideoCall from './components/VideoCall'
+import AnimatedForm from './components/AnimatedForm.js';
 import Home from './components/Home';
 
 
@@ -16,7 +17,8 @@ function App() {
        <Route path="/" exact element={<Home />} />
        <Route path="/usersearch" element={<UserSearch />} />
        <Route path="/resources" element={<Resources />} />
-       <Route path="videoCall" element={<VideoCall/>}/>
+       
+       <Route path="/form" element={<AnimatedForm/>}/>
         
          
        </Routes>
