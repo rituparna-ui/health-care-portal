@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import './form.css'
-
+import Navbar from './Navbar';
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 export default function AnimatedForm(){
   const[pos,setPos]=useState(0)
@@ -19,16 +19,18 @@ export default function AnimatedForm(){
     {question:"Have you checked your cholestorl in last 5 years(Yes/No)?",option:{},type:'email',name:'checkCol'},
     {question:"Have you smoked at least 100 cigarettes in your entire life? [Note: 5 packs = 100 cigarettes](Yes/No)",option:{},type:'text',name:'smoker'},
     {question:"Do you ever had stroke (Yes/No)",option:{},type:'text',name:'stroke'},
-    {question:"coronary heart disease (CHD) or myocardial infarction (MI)(Yes/No)",option:{},type:'heart',name:'heart'},
+   
     {question:"physical activity in past 30 days - not including job(Yes/No)",option:{},type:'text',name:'phyAct'},
     {question:"Consume Fruit 1 or more times per day (Yes/No)",option:{},type:'text',name:'fruits'},
-    {question:"Consume Vegetables 1 or more times per day(Yes/No)",option:{},type:'text',name:'veggies'},
+    
     {question:"Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)(Yes/No)",option:{},type:'text',name:'heavyAlcohol'},
     {question:"Would you say that in general your health is: (scale 1-5 => 1 = excellent 2 = very good 3 = good 4 = fair 5 = poor)",option:{},type:'text',name:'genHlt'},
     {question:"Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days it has been bad in past 30days",option:{},type:'text',name:'menHlt'},
     {question:"Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days you have been ill",option:{},type:'text',name:'phyHlt'},
     {question:"Do you have serious difficulty walking or climbing stairs?(Yes/No)",option:{},type:'text',name:'diffWlk'},
     {question:"Gender (male/female) ",option:{},type:'text',name:'gender'},
+    {question:"Height in cm",option:{},type:'text',name:'height'},
+    {question:"weight in kg",option:{},type:'text',name:'weight'},
     {question:"Age",option:{},type:'text',name:'age'},
 
     
@@ -37,7 +39,7 @@ export default function AnimatedForm(){
 
   function clickHandler(event){
     event.preventDefault()
-    console.log(pos)
+   
      pos===questions.length-2?setSubmitButton(false):setSubmitButton(true)
      pos < questions.length-1? setPos(pos+1):setPos(0) 
      
@@ -49,31 +51,50 @@ export default function AnimatedForm(){
 
     
   }
-  console.log(submitButton)
+  
     
   
   function handleChange(event) {
     setData(event.target.value)
-    const{name,value}=event.target
+    var{name,value}=event.target
+    if(value.toString().toLowerCase()==="yes"){
+      value=1.0
+      console.log(value)
+    }else if(value.toString().toLowerCase()==="no"){
+      value=0.0
+      console.log(value)
+    }
+    else if(value.toString().toLowerCase()==="female"){
+      value=0.0
+      console.log(value)
+    }
+    else if(value.toString().toLowerCase()==="male"){
+      value=1.0
+      console.log(value)
+    }
     setFormData({
       ...formData,
       [name]:value,
     })
 
-    console.log(formData)
-    
+   
   }
   function reset(){
     setButtonClick(!buttonClick)
     
   }
   function submitHandler() {
+    var BMI = (formData.weight)/(formData.height)
+    BMI= BMI/formData.height
+    BMI=BMI*10000
+    console.log(BMI)
     console.log(formData)
     setDisplayResult(true)
     
   }
   return (
       <>
+      <Navbar/>
      {displayResult ?
      (
       <h1>Result</h1>

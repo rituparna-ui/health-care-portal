@@ -8,6 +8,8 @@ const UserSearch = () =>{
     const[resource,setResource]=useState('');
     const[latitude,setLatitude]=useState(0);
     const[longitude,setLongitude]=useState(0);
+    const[resultData,setResultData]=useState()
+    const[result,setResult]=useState(false)
     const[qty,setQty]=useState(0);
     
     const[buttonClick,setButtonClick]=useState(0);
@@ -62,7 +64,10 @@ const UserSearch = () =>{
 
         })
         .then(res=>{
-            console.log(res.data)
+            //console.log(res.data)
+            setResultData(res.data.hospitals)
+            setResult(true)
+            
         })
         .catch(err=>{
             console.log(err)
@@ -74,6 +79,7 @@ const UserSearch = () =>{
         /*if(response.status(200)){
             console.log(response)
         }*/
+        //console.log(resultData)
 
     }
     
@@ -95,57 +101,47 @@ const UserSearch = () =>{
             <input onChange={e=>setLocation(e.target.value)}className='inputBox' placeholder='location'></input>
             <button onClick={sendData} className='inputBox buttonClass' type='submit'>submit </button>
         </div>
-        <div>
-            <div className='searchResult'>
-                <div className=' searchCard d-flex flex-row' 
-                style={{borderBottom:'solid',
-                    borderBottomWidth:'1px',
-                    borderBottomColor:'#7D7B7B',
-                    width:'70%',
+        {
+            result ? (
+                <div>
+                <div className='searchResult'>
+                    {
+                        resultData.map((key,val)=>(
+                            <div className=' searchCard d-flex flex-row' 
+                            style={{borderBottom:'solid',
+                            borderBottomWidth:'1px',
+                            borderBottomColor:'#7D7B7B',
+                            paddingTop:'20px',
+                            width:'70%'
+                            
+                                 }}
+                        >
+                                <div className='iconResult'></div>
+                                <div className='d-flex flex-column sectionDivide'>
+                                    <h3 className='searchName'>{key.hosp}</h3>
+                                    <p className='textSearch'>{key.loc}</p>
+                                    
+                                </div>
+                                <div class='sectionDivide '>
+                                    <p className='textSearch ' style={{textAlign:'center'}}> Quantity : 50</p>
+                                </div>
+                                <div class='sectionDivide '>
+                                    <p className='textSearch ' style={{textAlign:'right'}}>Contact no. : 9732492372</p>
+                                </div>
+                            
+                            </div>
+                        ))
+                    }
                     
-                }}>
-                    <div className='iconResult'></div>
-                    <div className='d-flex flex-column sectionDivide'>
-                        <h3 className='searchName'>AIR FORCE STATION MEDICARE CENTER</h3>
-                        <p className='textSearch'>sahkaj aksdhkasd jasdlkjsad SMQ 812/4 NP area, AFS Lohegaon,Pune, Maharashtra</p>
-                        
-                    </div>
-                    <div class='sectionDivide '>
-                        <p className='textSearch ' style={{textAlign:'center'}}> Quantity : 50</p>
-                    </div>
-                    <div class='sectionDivide '>
-                        <p className='textSearch ' style={{textAlign:'right'}}>Contact no. : 9732492372</p>
-                    </div>
-                
+                   
+                    
+                    
+                    
                 </div>
-                <div className=' searchCard d-flex flex-row' 
-                style={{borderBottom:'solid',
-                borderBottomWidth:'1px',
-                borderBottomColor:'#7D7B7B',
-                paddingTop:'20px',
-                width:'70%'
-                
-                     }}
-            >
-                    <div className='iconResult'></div>
-                    <div className='d-flex flex-column sectionDivide'>
-                        <h3 className='searchName'>AIR FORCE STATION MEDICARE CENTER</h3>
-                        <p className='textSearch'>SMQ 812/4 NP area, AFS Lohegaon,Pune, Maharashtra</p>
-                        
-                    </div>
-                    <div class='sectionDivide '>
-                        <p className='textSearch ' style={{textAlign:'center'}}> Quantity : 50</p>
-                    </div>
-                    <div class='sectionDivide '>
-                        <p className='textSearch ' style={{textAlign:'right'}}>Contact no. : 9732492372</p>
-                    </div>
-                
-                </div>
-                
-                
-                
             </div>
-        </div>
+            ):(<h1>result</h1>)
+        }
+        
         {/*<h1 class='pt-5 text-center'>User Search</h1>
         <input onChange={e=>setLocation(e.target.value)}></input>
     <button onClick={handleClick}>submit</button>*/}
