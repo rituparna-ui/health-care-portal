@@ -7,7 +7,7 @@ import UserSearch from './components/UserSearch';
 //import VideoCall from './components/VideoCall'
 import AnimatedForm from './components/AnimatedForm.js';
 import Home from './components/Home';
-
+import Symptom from './components/Symptom'
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
        <Route path="/resources" element={<Resources />} />
        
        <Route path="/form" element={<AnimatedForm/>}/>
+       <Route path="/symptoms" element={<Symptom/>} />
         
          
        </Routes>
