@@ -5,8 +5,10 @@ const HospitalRegistration = () =>{
     
     return (
         <>
-        <Navbar/>
-        <div className="container2 mt-5"> <h1 class='pt-5'>REGISTRATION</h1>
+        
+        <div  className="container2 mt-5">
+           <h1 class='heading pt-2'>Hospital Registration</h1>
+           <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
         </div>
        
         
@@ -14,7 +16,7 @@ const HospitalRegistration = () =>{
               <div className="container mt-5">
                   <div className="signup-content">
                     <div className="signup-form">
-                        <h2 className="form-title">HOSPITAL REGISTRATION</h2>
+                        
                        <form className="register-form" id="register-form">
                            <div className="form-group">
                                <label htmlFor="name">
@@ -53,13 +55,16 @@ const HospitalRegistration = () =>{
 
                             
 
-                              <label htmlFor="State">
+                           </div>
+                           <div className='form-group'>
+                             
+
+                           <label htmlFor="State">
                                <i class="zmdi zmdi-pin drop-icons-name"></i>
                                </label>
                                <input type="text" name="State" id="State" autoComplete="off"
                                  placeholder="State"
                                  />
-
                            </div>
                            <div className="form-group">
                                <label htmlFor="password">

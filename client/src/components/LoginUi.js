@@ -2,7 +2,29 @@ import './LoginUi.css';
 import profile from "./../image/a.png";
 import email from "./../image/email.jpg";
 import pass from "./../image/pass.png";
+import React,{useState} from 'react';
+import axios from 'axios';
 function LoginUi() {
+  const[formData,setFormData]=useState()
+  const changeHandler=(event)=>{
+     const{name,value}=event.target
+
+     setFormData({
+       ...formData,
+       [name]:value
+     })
+  }
+  function clickHandler(){
+    const{email,password}=formData
+    axios.post("http://localhost:5000/api/v1/auth/login",{
+        email,password
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+  console.log(formData)
   return (
     <div className="main">
      <div className="sub-main">
@@ -16,17 +38,17 @@ function LoginUi() {
 
          </div>
          <div>
-           <h1>Login Page</h1>
+           <h3>Login Page</h3>
            <div>
              <img src={email} alt="email" className="email"/>
-             <input type="text" placeholder="user name" className="name"/>
+             <input className='loginInput name' name='email' onChange={changeHandler} type="text" placeholder="email"/>
            </div>
            <div className="second-input">
              <img src={pass} alt="pass" className="email"/>
-             <input type="password" placeholder="password" className="name"/>
+             <input className='loginInput name' name='password' onChange={changeHandler} type="password" placeholder="password" />
            </div>
-          <div className="login-button">
-          <button>Login</button>
+          <div >
+          <button className="login-button" onClick={clickHandler}>Login</button>
           </div>
            
             <p className="link">
