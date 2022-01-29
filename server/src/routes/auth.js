@@ -39,7 +39,9 @@ router.post(
   signupUser
 );
 
-router.post('/login', login);
+router.post('/login', 
+  [body('email').isString(), body('password').isString()],
+login);
 
 router.get('/verify/:id', verify);
 
