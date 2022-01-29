@@ -86,7 +86,7 @@ const UserSearch = () =>{
 
     return (
         <>
-        <Navbar></Navbar>
+       
         <h1 className='heading'>Heading</h1>
         <hr style={{width:'20%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
         <div class='searchBar pt-3 d-flex flex-row justify-content-center align-items-center'>

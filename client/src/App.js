@@ -8,13 +8,17 @@ import UserSearch from './components/UserSearch';
 import AnimatedForm from './components/AnimatedForm.js';
 import Home from './components/Home';
 import Symptom from './components/Symptom'
+import HomePage from './components/HomePage'
+
 
 function App() {
   return (
     <BrowserRouter>
+     <Navbar/>
        <Routes>
-       
+      
        <Route path="/" exact element={<Home />} />
+       <Route path="/home" exact element={<HomePage/>}/>
        <Route path="/usersearch" element={<UserSearch />} />
        <Route path="/resources" element={<Resources />} />
        

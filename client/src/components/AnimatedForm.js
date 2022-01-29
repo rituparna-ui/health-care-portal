@@ -94,7 +94,7 @@ export default function AnimatedForm(){
   }
   return (
       <>
-      <Navbar/>
+      
      {displayResult ?
      (
       <h1>Result</h1>

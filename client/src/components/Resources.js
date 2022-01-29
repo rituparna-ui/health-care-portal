@@ -30,7 +30,7 @@ const Resources = () => {
 
   return (
     <>
-      <Navbar />
+    
       <div className="container2 ">
         {' '}
         <h1 class="pt-4 heading"> RESOURCE DATABASE</h1>
