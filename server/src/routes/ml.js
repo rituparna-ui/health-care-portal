@@ -4,7 +4,8 @@ const router = express.Router();
 
 const errorHelper = require('./../utils/error');
 
-router.post('/diabetes', (req, res) => {
+// /api/v1/ml/diabetes
+router.post('/diabetes', (req, res, next) => {
   const { a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p } = req.body;
   axios
     .post('http://localhost:8000/diabetes', {
