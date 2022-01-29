@@ -1,58 +1,46 @@
-const { body } = require('express-validator');
 const express = require('express');
-
-const User = require('./../models/user');
-
-const {
-  VALID_EMAIL,
-  PASSWORD_LEN,
-  VALID_NAME,
-  NAME_LEN,
-  PASSWORD_MATCH,
-  EMAIL_EXISTS,
-} = require('../configs/messages');
-const { postSignup, postLogin, getVerify } = require('../controllers/auth');
-const { PASSWORD_LENGTH, NAME_LENGTH } = require('../configs/constants');
-
 const router = express.Router();
 
-// ! /api/v1/users/signup
+const { body } = require('express-validator');
+const { signupUser, login, verify } = require('../controllers/auth');
+
 router.post(
   '/signup',
   [
     body('name')
-      .trim()
-      .isAlpha()
-      .withMessage(VALID_NAME)
-      .isLength({ min: NAME_LENGTH })
-      .withMessage(NAME_LEN),
+      .isLength({ min: 3 })
+      .withMessage('Name should be at least 3 characters long'),
     body('email')
       .isEmail()
+      .withMessage('Please enter a valid email')
       .normalizeEmail()
-      .withMessage(VALID_EMAIL)
-      .custom((value, { req }) => {
-        return User.findOne({ email: value }).then((user) => {
-          if (user) {
-            return Promise.reject(EMAIL_EXISTS);
-          }
-          return true;
-        });
-      }),
+      .toLowerCase(),
     body('password')
-      .isLength({ min: PASSWORD_LENGTH })
-      .withMessage(PASSWORD_LEN),
-    body('confirmPassword').custom((value, { req }) => {
+      .isLength({ min: 8 })
+      .withMessage('Password must be of at least 8 characters'),
+    body('confPassword').custom((value, { req }) => {
       if (value != req.body.password) {
-        throw new Error(PASSWORD_MATCH);
+        throw new Error('Passwords do not match');
+      } else {
+        return true;
       }
-      return true;
     }),
+    body('sex')
+      .isNumeric()
+      .custom((value) => {
+        if (value == 0 || value == 1) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .withMessage('Invalid Gender'),
   ],
-  postSignup
+  signupUser
 );
 
-router.post('/login', [body('email').trim().toLowerCase()], postLogin);
+router.post('/login', login);
 
-router.get('/verify/:id', getVerify);
+router.get('/verify/:id', verify);
 
 module.exports = router;
