@@ -1,47 +1,16 @@
 const mongoose = require('mongoose');
 
-const bloodGroupSchema = new mongoose.Schema({
-  group: String,
-  qty: Number,
-});
-
 const hospitalSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
-  },
-  resources: {
-    type: {
-      beds: Number,
-      oxy: Number,
-      blood: {
-        type: [bloodGroupSchema],
-        default: [],
-      },
-    },
-    default: {
-      beds: 100,
-      oxy: 200,
-      blood: [],
-    },
-  },
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  phone: { type: String, required: true },
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  password: { type: String, required: true },
+  
+  role: { type: String, default: 'HOSPITAL' },
+  approved: { type: Boolean, default: false },
 });
-
-hospitalSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);
