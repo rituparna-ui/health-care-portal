@@ -1,30 +1,30 @@
 {
-  "name": "server",
+  "name": "phc-server",
   "version": "1.0.0",
-  "description": "Node API server",
+  "description": "API server for phc-gehc",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon .",
-    "mongodb": "mongod --dbpath ./db"
+    "test": "nodemon index.js",
+    "mongodb": "mongod --dbpath ./db",
+    "start": "node index.js"
   },
   "keywords": [
     "API",
     "express",
-    "node"
+    "nodejs"
   ],
   "author": "Rituparna W",
   "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
   "dependencies": {
-    "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "express-validator": "^6.14.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.7",
+    "mongoose": "^6.1.8",
     "nodemailer": "^6.7.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
   }
 }

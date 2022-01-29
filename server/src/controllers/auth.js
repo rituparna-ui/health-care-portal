@@ -3,102 +3,103 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('./../models/user');
-const {
-  SIGNUP,
-  USER_404,
-  INVALID_PASSWORD,
-  LOGIN_SUCCESS,
-} = require('../configs/messages');
-const generateOTP = require('../utils/generateOTP');
-const { OTPmail } = require('../utils/mailer');
-const { JWT } = require('../configs/constants');
+const errorHelper = require('./../utils/error');
+const OTPGEN = require('./../utils/otp');
+const mailer = require('./../utils/mailer');
 
-exports.postSignup = async (req, res, next) => {
+exports.signupUser = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const err = new Error('Validation failed');
-    err.statusCode = 422;
-    err.data = errors.array();
-    return next(err);
+    return next(errorHelper('Validation Failed', 422, errors.array()));
   }
-
-  const { name, email, password } = req.body;
-  const hash = await bcrypt.hash(password, 12);
-  const otp = generateOTP();
-
   try {
+    const extUser = await User.findOne({ email: req.body.email });
+
+    if (extUser) {
+      return next(errorHelper('User with this email already exists', 409, []));
+    }
+    const { name, email, age, sex, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const otp = OTPGEN();
     const user = await User.create({
       name,
       email,
+      age,
+      sex,
       otp,
-      password: hash,
+      password: hashedPassword,
     });
-    OTPmail(email, otp, user._id)
-      .then((r) => {
-        console.log(r);
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-    return res.status(201).json({
-      message: SIGNUP,
+
+    mailer.OTPmail(user.email, otp, user._id);
+
+    return res.status(200).json({
+      message: 'Sign up successful, Please check your email to verify account',
+      status: 201,
     });
   } catch (error) {
-    next(error);
+    return next(errorHelper(error.message, 500, []));
   }
 };
 
-exports.postLogin = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const err = new Error('Validation failed');
-    err.statusCode = 422;
-    err.data = errors.array();
-    return next(err);
-  }
-
+exports.login = async (req, res, next) => {
   const { email, password } = req.body;
-
-  const user = await User.findOne({ email }).select('+password');
-  if (!user) {
-    const error = new Error(USER_404);
-    error.statusCode = 404;
-    return next(error);
+  try {
+    const user = await User.findOne({ email }).select('+password');
+    if (!user) {
+      return next(errorHelper('User with given email does not exist', 404, []));
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    console.log(isMatch);
+    if (!isMatch) {
+      return next(errorHelper('Invalid Credentials', 403, []));
+    }
+    if (!user.verified) {
+      return next(errorHelper('Account not verified', 401, []));
+    }
+    const token = jwt.sign(
+      {
+        email: user.email,
+        id: user._id,
+        role: user.role,
+      },
+      'supersecretjwtsecretkey'
+    );
+    return res.status(200).json({
+      message: 'Login successful',
+      status: 200,
+      token,
+    });
+  } catch (error) {
+    return next(errorHelper(error.message, 500, []));
   }
-
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) {
-    const error = new Error(INVALID_PASSWORD);
-    error.statusCode = 401;
-    return next(error);
-  }
-
-  const token = jwt.sign({ id: user._id }, JWT);
-
-  return res.json({
-    message: LOGIN_SUCCESS,
-    token,
-  });
 };
 
-exports.getVerify = async (req, res, next) => {
+// /api/v1/auth/verify/:id?otp=XXXXXX
+exports.verify = async (req, res, next) => {
   const { id } = req.params;
-  const otp = req.query.otp || req.body.otp;
-  const user = await User.findById(id);
-  if (!user) {
-    const error = new Error(USER_404);
-    error.statusCode = 404;
-    return next(error);
+  const { otp } = req.query;
+
+  if (!otp) {
+    return next(errorHelper('OTP Not Provided', 404, []));
   }
-  if (user.otp === parseInt(otp)) {
-    user.isVerified = true;
-    user.otp = undefined;
-    await user.save();
-    return res.status(200).json({
-      message: 'User Verified',
-    });
+  try {
+    const user = await User.findOne({ _id: id });
+    if (!user) {
+      return next(errorHelper('User not found', 404, []));
+    }
+    if (otp != user.otp) {
+      return next(errorHelper('Invalid OTP', 403, []));
+    }
+    if (otp == user.otp) {
+      user.verified = true;
+      user.otp = null;
+      await user.save();
+      return res.status(200).json({
+        message: 'User verified',
+        status: 200,
+      });
+    }
+  } catch (error) {
+    return next(errorHelper(error.message, 500, []));
   }
-  const error = new Error('Unable to verify');
-  error.statusCode = 500;
-  return next(error);
 };
