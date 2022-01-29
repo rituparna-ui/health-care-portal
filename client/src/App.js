@@ -9,6 +9,9 @@ import AnimatedForm from './components/AnimatedForm.js';
 import Home from './components/Home';
 import Symptom from './components/Symptom'
 import HomePage from './components/HomePage'
+import PCOSPrediction from './components/PCOSprediction';
+import DepressionForm from './components/DepressionForm';
+import ChronicDiagnosis from './components/chronicDiagnosis';
 
 
 function App() {
@@ -22,9 +25,12 @@ function App() {
        <Route path="/usersearch" element={<UserSearch />} />
        <Route path="/resources" element={<Resources />} />
        
-       <Route path="/form" element={<AnimatedForm/>}/>
+       <Route path="/diabetes" element={<AnimatedForm/>}/>
        <Route path="/symptoms" element={<Symptom/>} />
-        
+       <Route path="/pcos" element={<PCOSPrediction/>} />
+       <Route path="/depression" element={<DepressionForm/>} />
+       <Route path="/chronic" element={<ChronicDiagnosis/>} />
+       
          
        </Routes>
     </BrowserRouter>

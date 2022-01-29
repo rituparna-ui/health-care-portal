@@ -3,8 +3,8 @@ const path = require('path');
 const express = require('express');
 
 const DB = require('./src/utils/DB');
-const api = require('./api');
-const auth = require('./src/middlewares/auth');
+const apiRoutes = require('./src/api');
+//const auth = require('./src/middlewares/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 

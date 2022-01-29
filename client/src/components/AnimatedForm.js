@@ -2,12 +2,14 @@ import React,{useState} from 'react'
 import './form.css'
 import Navbar from './Navbar';
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import axios from 'axios';
 export default function AnimatedForm(){
   const[pos,setPos]=useState(0)
   const[data,setData]=useState("")
    const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
   const[displayResult,setDisplayResult]=useState(false)
+  const[result,setResult]=useState([])
 
   const initialValue={
     
@@ -89,15 +91,53 @@ export default function AnimatedForm(){
     BMI=BMI*10000
     console.log(BMI)
     console.log(formData)
-    setDisplayResult(true)
     
+    const{highBp,highCol,checkCol,smoker,stroke,phyAct,fruits,heavyAlcohol,genHlt,menHlt,phyHlt,
+    diffWlk,gender,age}=formData
+    console.log(highBp)
+    axios.post('http://localhost:5000/api/v1/ml/diabetes',{
+       highBp,
+       highCol,
+       checkCol,
+       BMI,
+       smoker,
+       stroke,
+       phyAct,
+       fruits,
+       heavyAlcohol,
+       genHlt,
+       menHlt,
+       phyHlt,
+       diffWlk,
+       gender,
+       age
+
+       
+
+    }).then(res=>{
+      console.log(res)
+     
+      setResult(res.data.probabilityArray.answer)
+      setDisplayResult(true)
+      
+    }).catch(err=>{
+      console.log(err)
+    })
   }
   return (
       <>
       
      {displayResult ?
      (
+      <>
       <h1>Result</h1>
+      {
+          result.map((key,val)=>(
+            <p>{key}</p>
+        ))
+      }
+      </>
+
      )
      :(
        <div class='fullFrame'>
