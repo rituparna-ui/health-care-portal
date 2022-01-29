@@ -5,9 +5,16 @@ const app = express();
 const DB = require('./src/utils/db');
 const api = require('./api');
 const auth = require('./src/middlewares/auth');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+app.options('*', cors());
+app.get('/cors', (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.send({
+    msg: 'This has CORS enabled',
+  });
+});
 app.use(express.json());
 
 app.use('/api/v1', api);

@@ -18,10 +18,12 @@ const getDistance = (lat1, lat2, lon1, lon2) => {
 };
 
 exports.postSearchHospital = async (req, res, next) => {
-  const { address, resource, quantity } = req.body;
+  const { resource, qty,location} = req.body;
+  console.log(location)
 
   try {
-    const coordinates = await geocode(address);
+    const coordinates = await geocode(location);
+    console.log(coordinates.longitude,coordinates.latitude)
     const hospitals = await Hospital.find({
       location: {
         $near: {
@@ -65,7 +67,7 @@ exports.postSearchHospital = async (req, res, next) => {
         }
       }
     }
-
+   
     return res.status(200).json({
       message: 'Showing results for hospitals within 200kms',
       hospitals: array,
