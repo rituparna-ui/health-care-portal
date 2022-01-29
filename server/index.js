@@ -3,9 +3,6 @@ const path = require('path');
 const express = require('express');
 
 const DB = require('./src/utils/DB');
-const apiRoutes = require('./src/api');
-
-const DB = require('./src/utils/db');
 const api = require('./api');
 const auth = require('./src/middlewares/auth');
 const app = express();
