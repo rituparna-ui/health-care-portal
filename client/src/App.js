@@ -1,4 +1,4 @@
-import './App.css';
+ import './App.css';
 import React from 'react';
 import {Route, BrowserRouter,Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -7,6 +7,9 @@ import UserSearch from './components/UserSearch';
 //import VideoCall from './components/VideoCall'
 import AnimatedForm from './components/AnimatedForm.js';
 import Home from './components/Home';
+import LoginUi from './components/LoginUi';
+import HospitalRegistration from './components/HospitalRegistration';
+import UserRegistration from './components/UserRegistration';
 import Symptom from './components/Symptom'
 import HomePage from './components/HomePage'
 import PCOSPrediction from './components/PCOSprediction';
@@ -26,6 +29,11 @@ function App() {
        <Route path="/resources" element={<Resources />} />
        
        <Route path="/diabetes" element={<AnimatedForm/>}/>
+       <Route path="LoginUi" element={<LoginUi/>}/>
+       <Route path="/HospitalRegistration" element={<HospitalRegistration />} /> 
+       <Route path="/UserRegistration" element={<UserRegistration />} /> 
+       
+       <Route path="/form" element={<AnimatedForm/>}/>
        <Route path="/symptoms" element={<Symptom/>} />
        <Route path="/pcos" element={<PCOSPrediction/>} />
        <Route path="/depression" element={<DepressionForm/>} />
