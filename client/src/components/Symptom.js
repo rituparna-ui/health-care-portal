@@ -48,7 +48,7 @@ const Symptom=()=>{
    
    return(
        <>
-         <Navbar/>
+       <Navbar/>
          <h1 className="heading">Heading</h1>
          <div className="symContainer">
              <div style={{width:'50%'}}>

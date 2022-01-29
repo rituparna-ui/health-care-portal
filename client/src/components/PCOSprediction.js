@@ -130,7 +130,7 @@ export default function PCOSPrediction(){
   }
   return (
       <>
-      
+       <Navbar/>
      {displayResult ?
      (
       <>
@@ -144,7 +144,9 @@ export default function PCOSPrediction(){
 
      )
      :(
-       <div class='fullFrame'>
+       <div>
+        
+         <div class='fullFrame'>
           <div class='heading mt-3'>PCOS Prediction</div>
           <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
          
@@ -178,6 +180,7 @@ export default function PCOSPrediction(){
       
       </div>
     </div>
+       </div>
        </div>
      
      )

@@ -86,7 +86,7 @@ const UserSearch = () =>{
 
     return (
         <>
-       
+       <Navbar/>
         <h1 className='heading'>Heading</h1>
         <hr style={{width:'20%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
         <div class='searchBar pt-3 d-flex flex-row justify-content-center align-items-center'>
@@ -139,7 +139,7 @@ const UserSearch = () =>{
                     
                 </div>
             </div>
-            ):(<h1>result</h1>)
+            ):(null)
         }
         
         {/*<h1 class='pt-5 text-center'>User Search</h1>

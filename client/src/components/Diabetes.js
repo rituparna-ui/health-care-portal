@@ -3,13 +3,13 @@ import './form.css'
 import Navbar from './Navbar';
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import axios from 'axios';
-export default function AnimatedForm(){
+export default function Diabetes(){
   const[pos,setPos]=useState(0)
   const[data,setData]=useState("")
    const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
   const[displayResult,setDisplayResult]=useState(false)
-  const[result,setResult]=useState([])
+  const[result,setResult]=useState()
 
   const initialValue={
     
@@ -34,9 +34,6 @@ export default function AnimatedForm(){
     {question:"Height in cm",option:{},type:'text',name:'height'},
     {question:"weight in kg",option:{},type:'text',name:'weight'},
     {question:"Age",option:{},type:'text',name:'age'},
-
-    
-  
   ]
 
   function clickHandler(event){
@@ -130,11 +127,89 @@ export default function AnimatedForm(){
      {displayResult ?
      (
       <>
-      <h1>Result</h1>
+     <Navbar/>
       {
-          result.map((key,val)=>(
-            <p>{key}</p>
-        ))
+          result.map((key,val)=>{
+            if(key===0){
+               return <div class='infoDiabetic'>
+                 <h2 style={{color:'green'}}>You're not diabetic</h2>
+                 <div class='preventDiabetes'>
+                   <h6>
+                      You need to improve your daily lifestyle to keep yourself 
+                      away from the risk of diabetes.
+                   </h6>
+                   <ul>
+                     <li>Reduce your total carb intake</li>
+                     <li>Exercise Regularly</li>
+                     <li>Drink water as you primary beverage</li>
+                     <li>Try to loose excess weight</li>
+                     <li>Quit smoking</li>
+                     <li>Reduce your portion sizes</li>
+                     <li>Cut back on sedentary behaviours</li>
+                     <li>Follow a high Fibre diet</li>
+                   </ul>
+                   <a href="https://www.healthline.com/nutrition/prevent-diabetes#8.-Follow-a-high-fiber-diet">read more...</a>
+                 </div>
+               </div>
+            }else if(key==1){
+              return <div class='infoDiabetic'>
+                 <h2 style={{color:'orange'}}>You're Pre diabetic</h2>
+                 <div class='preventDiabetes'>
+                   <h4>
+                   Is prediabetes reversible?
+                   </h4>
+                   Absolutely! You can turn back your prediabetes by adopting lifestyle changes, including:
+                   <ul>
+                     <li>Monitor your blood sugar with your doctor. </li>
+                     <li>Ensure you get enough sleep.</li>
+                     <li>Reduce your stress. </li>
+                     <li>Embrace regular exercise. </li>
+                     <li>Choose the right beverages. Don't drink sweetend beverages and always stay hydrated</li>
+                     <li>Avoid certain food like trans-fats,fried food,high calorie and high fat foods </li>
+                     <li> Shed a few pounds. </li>
+                     
+                   </ul>
+                   <a href="https://www.cdc.gov/diabetes/basics/prediabetes.html">read more...</a>
+                 </div>
+               </div>
+            }else if(key===2){
+              return <div class='infoDiabetic'>
+              <h2 style={{color:'red'}}>You're Diabetic</h2>
+              <div class='preventDiabetes'>
+                <h5>
+                Diabetes management requires awareness. Know what makes your blood sugar level rise and fall — and how to control these day-to-day factors.
+                </h5>
+                <p>Food</p>
+                <ul>
+                  <li>Learn about carbohydrate counting and portion sizes.  </li>
+                  <li>Make every meal well balanced.</li>
+                  <li>Coordinate your meals and medications.</li>
+                  <li>Avoid sugar-sweetened beverages.</li>
+                  
+                  
+                </ul>
+                <p>Exercise</p>
+                <ul>
+                  <li>Keep an exercise schedule.   </li>
+                  <li>Check your blood sugar level.</li>
+                  <li>Stay hydrated. .</li>
+                  <li>Adjust your diabetes treatment plan as needed.</li>
+                  
+                  
+                </ul>
+                <p>Medication</p>
+                <ul>
+                  <li>Store insulin properly.  </li>
+                  <li>Be cautious with new medicine</li>
+                  <li>Report problems to your doctor. .</li>
+                 
+                  
+                </ul>
+                <a href="https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-management/art-20047963">read more...</a>
+              </div>
+            </div>
+            }
+          })
       }
       </>
 

@@ -5,7 +5,7 @@ const HospitalRegistration = () =>{
     
     return (
         <>
-        
+        <Navbar/>
         <div  className="container2 mt-5">
            <h1 class='heading pt-2'>Hospital Registration</h1>
            <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>

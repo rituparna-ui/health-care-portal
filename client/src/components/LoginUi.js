@@ -4,8 +4,10 @@ import email from "./../image/email.jpg";
 import pass from "./../image/pass.png";
 import React,{useState} from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 function LoginUi() {
   const[formData,setFormData]=useState()
+  const[login,setLogin]=useState(false)
   const changeHandler=(event)=>{
      const{name,value}=event.target
 
@@ -16,17 +18,22 @@ function LoginUi() {
   }
   function clickHandler(){
     const{email,password}=formData
+   
     axios.post("http://localhost:5000/api/v1/auth/login",{
         email,password
     }).then(res=>{
       console.log(res)
+      setLogin(true)
     }).catch(err=>{
       console.log(err)
     })
   }
   console.log(formData)
   return (
+    <>
+    <Navbar isLoggedIn={login}/>
     <div className="main">
+      
      <div className="sub-main">
        <div>
          <div className="imgs">
@@ -52,7 +59,7 @@ function LoginUi() {
           </div>
            
             <p className="link">
-              <a href="#">Forgot password ?</a> Or<a href="#">Sign Up</a>
+              <a className='linklogin' href="#">Forgot password ?</a> Or<a className='linklogin' href="#">Sign Up</a>
             </p>
            
  
@@ -62,6 +69,8 @@ function LoginUi() {
 
      </div>
     </div>
+    </>
+    
   );
 }
 

@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Resources from './components/Resources';
 import UserSearch from './components/UserSearch';
 //import VideoCall from './components/VideoCall'
-import AnimatedForm from './components/AnimatedForm.js';
+import Diabetes from './components/Diabetes.js';
 import Home from './components/Home';
 import LoginUi from './components/LoginUi';
 import HospitalRegistration from './components/HospitalRegistration';
@@ -20,20 +20,20 @@ import ChronicDiagnosis from './components/chronicDiagnosis';
 function App() {
   return (
     <BrowserRouter>
-     <Navbar/>
+     
        <Routes>
       
-       <Route path="/" exact element={<Home />} />
+       <Route path="/" exact element={<HomePage />} />
        <Route path="/home" exact element={<HomePage/>}/>
        <Route path="/usersearch" element={<UserSearch />} />
        <Route path="/resources" element={<Resources />} />
        
-       <Route path="/diabetes" element={<AnimatedForm/>}/>
+       <Route path="/diabetes" element={<Diabetes/>}/>
        <Route path="LoginUi" element={<LoginUi/>}/>
        <Route path="/HospitalRegistration" element={<HospitalRegistration />} /> 
        <Route path="/UserRegistration" element={<UserRegistration />} /> 
        
-       <Route path="/form" element={<AnimatedForm/>}/>
+      
        <Route path="/symptoms" element={<Symptom/>} />
        <Route path="/pcos" element={<PCOSPrediction/>} />
        <Route path="/depression" element={<DepressionForm/>} />

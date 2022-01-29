@@ -101,7 +101,7 @@ export default function DepressionForm(){
   }
   return (
       <>
-      
+      <Navbar/>
      {displayResult ?
      (
       <>

@@ -126,6 +126,19 @@
     background-repeat: repeat-x;
     background-position-y: top;
     background-size: cover;
-    height: 90vh;
+    height: 100vh;
    
+  }
+  .infoDiabetic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:8%;
+    margin-bottom: 5%;
+  }
+  .preventDiabetes{
+    width:50%;
+    margin-top:5%;
+    
   }

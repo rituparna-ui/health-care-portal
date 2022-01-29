@@ -10,7 +10,7 @@ import './HomePage.css'
 const HomePage=()=>{
     return(
         <>
-        
+        <Navbar/>
         <div class='LandingContainer'>
             <div class='Text'>
                 <h1>One Stop for all <br></br> your Medical needs</h1>

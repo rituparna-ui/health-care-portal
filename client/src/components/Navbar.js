@@ -1,11 +1,13 @@
 import React from 'react'
 import { NavLink,Link } from 'react-router-dom';
-const Navbar = () =>{
+import { useAuth0 } from "@auth0/auth0-react";
+const Navbar = (isloggedIn) =>{
+  
     return (
         <>
-        <nav class="navbar navbar-expand-md bg-light navbar-light ">
+        <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">
   
-  <a class="navbar-brand" href="#">Navbar</a>
+  <Link style={{color:'black'}}class="nav-link" to="/">Navbar</Link>
 
   
   <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -15,23 +17,36 @@ const Navbar = () =>{
   <div class="collapse navbar-collapse " id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <Link class="nav-link" to="/">Link</Link>
+        <Link style={{color:'black'}}class="nav-link" to="/symptoms">Link</Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/usersearch">Link</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/usersearch">Link</Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/resources">medical Resources</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/chronic">chronic disease</Link>
       </li>
       <li class="nav-item">
-        <Link class="nav-link" to="/LoginUi">Login</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
       </li>
-      <li class="nav-item">
-        <Link class="nav-link" to="/HospitalRegistration">Hospital Registration</Link>
+      {
+        isloggedIn?<Link style={{color:'black'}} class="nav-link" to="/resources">Logout</Link>:<div >
+          <li class="nav-item" class='afterLogin d-flex justify-content-center align-items-center flex-row'>
+        <Link style={{color:'black'}} class="nav-link" to="/LoginUi">Login</Link>
+        <div class="dropdown">
+  <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Register
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  <Link class="nav-link" to="/UserRegistration">user Registration</Link>
+  <Link class="nav-link" to="/Hospitalregistration">Hospital Registration</Link>
+  </div>
+</div>
       </li>
-      <li class="nav-item">
-        <Link class="nav-link" to="/UserRegistration">User Registration</Link>
-      </li>
+        </div>
+      }
+
+     
+      
     </ul>
   </div>
 </nav>

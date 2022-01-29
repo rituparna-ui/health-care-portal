@@ -6,8 +6,9 @@
     background-image:url(../images/homepage-back.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position:left;
-    height:80vh;
+    
+    
+    height:90vh;
 }
 
 
@@ -88,5 +89,10 @@
    .Image img{
        padding-top:50px;
        width:100%;
+   }
+   .afterLogin{
+       flex-direction: column !important;
+       justify-content: flex-start !important;
+       align-items: flex-start !important;
    }
 }

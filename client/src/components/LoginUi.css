@@ -1,15 +1,17 @@
 .main {
   text-align: center;
   justify-content: center;
+  align-items: center;
   display: flex;
   padding-top: 90px;
   padding-bottom: 90px;
-  background-color: #e1e3eb;
+  flex-direction: column;
+  
 }
 .sub-main {
   display: flex;
   justify-content: center;
-  height: 550px;
+  height: 450px;
   width: 35%;
   box-shadow: 11px 12px 13px 12px rgb(207, 207, 207);
   padding-top: 30px;
@@ -22,7 +24,7 @@
   display: flex;
 }
 .container-image {
-  background-color: rgb(223, 221, 221);
+ 
   border-radius: 150px;
   align-items: center;
   display: flex;
@@ -83,7 +85,7 @@
   font-size: 15px;
   font-weight: 400;
 }
-a {
+.linkLogin {
   color: orange;
 }
 

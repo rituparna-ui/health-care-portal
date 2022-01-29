@@ -53,9 +53,7 @@ exports.login = async (req, res, next) => {
     if (!isMatch) {
       return next(errorHelper('Invalid Credentials', 403, []));
     }
-    if (!user.verified) {
-      return next(errorHelper('Account not verified', 401, []));
-    }
+   
     const token = jwt.sign(
       {
         email: user.email,
