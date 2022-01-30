@@ -10,6 +10,7 @@ exports.request = async (req, res, next) => {
     return next(errorHelper('Validation Failed', 422, errors.array()));
   }
   const { name, email, phone, address, city, state, password } = req.body;
+  
   try {
     const extHosp = await Hospital.findOne({ email });
 

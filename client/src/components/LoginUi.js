@@ -4,10 +4,14 @@ import email from "./../image/email.jpg";
 import pass from "./../image/pass.png";
 import React,{useState} from 'react';
 import axios from 'axios';
+import {setGlobalState,useGlobalState} from './state';
 import Navbar from './Navbar';
+
 function LoginUi() {
+
   const[formData,setFormData]=useState()
-  const[login,setLogin]=useState(false)
+  
+
   const changeHandler=(event)=>{
      const{name,value}=event.target
 
@@ -23,15 +27,19 @@ function LoginUi() {
         email,password
     }).then(res=>{
       console.log(res)
-      setLogin(true)
+      setGlobalState("LoggedIn",true)
+      setGlobalState("loggedInUser",email)
+      
     }).catch(err=>{
       console.log(err)
     })
   }
   console.log(formData)
+  console.log(useGlobalState('loggedInUser'))
+  console.log(useGlobalState('LoggedIn'))
   return (
     <>
-    <Navbar isLoggedIn={login}/>
+    <Navbar />
     <div className="main">
       
      <div className="sub-main">

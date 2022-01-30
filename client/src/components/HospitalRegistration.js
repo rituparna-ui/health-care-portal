@@ -1,7 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Navbar from './Navbar';
 
+import axios from 'axios';
 const HospitalRegistration = () =>{
+   
+  const[formData,setFormData]=useState()
+  const ChangeHandler=(event)=>{
+    var{name,value}=event.target
+   
+    setFormData({
+      ...formData,
+      [name]:value
+    })
+ }
+
+ const clickHandler=async()=>{
+  console.log(formData)
+  const{name,email,phone,address,city,state,password,confPassword}=formData
+  axios.post("http://localhost:5000/api/v1/hospitals/request",{
+    name,email,phone,address,city,state,password,confPassword
+  }).then(res=>{
+    console.log(res)
+   
+  }).catch(err=>{
+    console.log(err)
+  })
+}
+
+
     
     return (
         <>
@@ -23,7 +49,7 @@ const HospitalRegistration = () =>{
                                <i class="zmdi zmdi-account material-icons-name"></i>
 
                                </label>
-                               <input type="text" name="name" id="name" autoComplete="off"
+                               <input onChange={ChangeHandler}  type="text" name="name" id="name" autoComplete="off"
                                  placeholder="Hospital Name"
                                  />
                            </div>
@@ -32,7 +58,7 @@ const HospitalRegistration = () =>{
                                <i class="zmdi zmdi-email material-icons-name"></i>
 
                                </label>
-                               <input type="text" name="email" id="email" autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="email" id="email" autoComplete="off"
                                  placeholder="Email"
                                  />
                            </div>
@@ -41,15 +67,25 @@ const HospitalRegistration = () =>{
                                <i class="zmdi zmdi-phone material-icons-name"></i>
 
                                </label>
-                               <input type="text" name="contact no." id="contact no." autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="phone" id="contact no." autoComplete="off"
                                  placeholder="Contact Number"
                                  />
                            </div>
+                           <div className='form-group'>
+                             
+
+                             <label htmlFor="address">
+                                 <i class="zmdi zmdi-pin drop-icons-name"></i>
+                                 </label>
+                                 <input onChange={ChangeHandler} type="text" name="address" id="address" autoComplete="off"
+                                   placeholder="Address"
+                                   />
+                             </div>
                            <div className="form-group">
                                <label htmlFor="city">
                                <i class="zmdi zmdi-pin drop material-icons-name"></i>
                                </label>
-                               <input type="text" name="city" id="city" autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="city" id="city" autoComplete="off"
                                  placeholder="City"
                                  />
 
@@ -62,7 +98,7 @@ const HospitalRegistration = () =>{
                            <label htmlFor="State">
                                <i class="zmdi zmdi-pin drop-icons-name"></i>
                                </label>
-                               <input type="text" name="State" id="State" autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="state" id="State" autoComplete="off"
                                  placeholder="State"
                                  />
                            </div>
@@ -71,7 +107,7 @@ const HospitalRegistration = () =>{
                                <i class="zmdi zmdi-circle material-icons-name"></i>
 
                                </label>
-                               <input type="text" name="password" id="password" autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="password" id="password" autoComplete="off"
                                  placeholder="Your Password"
                                  />
                            </div>
@@ -80,7 +116,7 @@ const HospitalRegistration = () =>{
                                <i class="zmdi zmdi-circle material-icons-name"></i>
 
                                </label>
-                               <input type="text" name="Confirm Password" id="Confirm Password" autoComplete="off"
+                               <input onChange={ChangeHandler} type="text" name="confPassword" id="Confirm Password" autoComplete="off"
                                  placeholder="Confirm Password"
                                  />
                            </div>
@@ -88,9 +124,14 @@ const HospitalRegistration = () =>{
                            <div className="form-group form-button">
                                
                             
-                               <input type="submit" name="signup" id="signup" className="form-submit"
-                                 value="SUBMIT"
-                                 />
+                           <input
+                type="button"
+                name="signup"
+                id="signup"
+                className="form-submit "
+                value="SUBMIT"
+                onClick={clickHandler}
+              />
                            </div>
 
 

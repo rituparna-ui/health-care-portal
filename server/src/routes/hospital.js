@@ -20,7 +20,9 @@ const {
 
 router.post(
   '/request',
+
   [
+   
     body('name')
       .isLength({ min: 3 })
       .withMessage('Name should be at least 3 characters long'),
@@ -49,11 +51,14 @@ router.post(
       if (value != req.body.password) {
         throw new Error('Passwords do not match');
       } else {
+        
         return true;
       }
     }),
   ],
   request
+
+  
 );
 
 router.get('/requests', getRequests);

@@ -1,8 +1,9 @@
 import React from 'react'
 import { NavLink,Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
-const Navbar = (isloggedIn) =>{
-  
+import {setGlobalState,useGlobalState} from './state';
+const Navbar = () =>{
+   const isloggedIn=useGlobalState("LoggedIn")[0]
     return (
         <>
         <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">

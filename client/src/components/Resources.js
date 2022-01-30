@@ -1,9 +1,23 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import Navbar from './Navbar';
 import './resource.css'
 import axios from 'axios';
 
+import {setGlobalState,useGlobalState} from './state';
 const Resources = () => {
+  const LoggedinUser= useGlobalState('loggedInUser')[0]
+  console.log()
+  useEffect(()=>{
+      const url="http://localhost:5000/api/v1/auth/checkUserRole/"
+       axios.get(url,{params:{
+             user:'priyu'
+       }}).then(res=>{
+         console.log(res)
+       }).catch(err=>{
+         console.log(err)
+       })
+  },[])
+
   const handleClick = () => {
     const form = document.getElementById('register-form');
     const { name, email, contact, equip, qty, city, locality } = form;
@@ -27,12 +41,13 @@ const Resources = () => {
       locality: locality.value,
     });
   };
-
+  console.log(useGlobalState('LoggedIn'))
   return (
     <>
       <Navbar/>
+
       <div className="container2 ">
-        {' '}
+        
         <h1 class="pt-4 heading"> RESOURCE DATABASE</h1>
         <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
       </div>
@@ -43,92 +58,74 @@ const Resources = () => {
             <div className="signup-form">
               
               <form className="register-form" id="register-form">
-                <div className="form-group">
-                  <label htmlFor="name">
-                    <i class="zmdi zmdi-account material-icons-name"></i>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    autoComplete="off"
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email">
-                    <i class="zmdi zmdi-email material-icons-name"></i>
-                  </label>
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    autoComplete="off"
-                    placeholder="Your email"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="contact no.">
-                    <i class="zmdi zmdi-phone material-icons-name"></i>
-                  </label>
-                  <input
-                    type="text"
-                    name="contact"
-                    id="contact"
-                    autoComplete="off"
-                    placeholder="Your Contact Number"
-                  />
-                </div>
-                <div className="form-group d-flex flex-row">
+               
+               
+                <div className="form-group ">
                   <label htmlFor="medical equipment">
                     <i class="zmdi zmdi-hospital material-icons-name"></i>
                   </label>
-                  <select style={{width:'56%'}}
-                    name="equip"
-                    id="equip"
-                    autoComplete="off"
-                    placeholder="Medical Equipment"
-                  >
-                    <option default>select</option>
-                    <option>blood</option>
-                    <option>oxygen cylinders</option>
-                    <option>beds</option>
-                  </select>
-
+                
                   
                   <input
-                  style={{width:'20%'}}
+                   
                     type="text"
                     name="qty"
                     id="Quantity"
                     autoComplete="off"
-                    placeholder="Qty"
+                    placeholder="no. of general ward beds"
                   />
+                 
                 </div>
-                <div className="form-group">
-                  <label htmlFor="city">
-                    <i class="zmdi zmdi-pin drop material-icons-name"></i>
+                <div className="form-group ">
+                  <label htmlFor="medical equipment">
+                    <i class="zmdi zmdi-hospital material-icons-name"></i>
                   </label>
+                
+                  
                   <input
+                   
                     type="text"
-                    name="city"
-                    id="city"
+                    name="qty"
+                    id="Quantity"
                     autoComplete="off"
-                    placeholder="Your City"
+                    placeholder="no. of ICU beds"
                   />
+                 
                 </div>
-                <div className="form-group">
-                  <label htmlFor="locality">
-                    <i class="zmdi zmdi-pin drop material-icons-name"></i>
+                <div className="form-group ">
+                  <label htmlFor="medical equipment">
+                    <i class="zmdi zmdi-hospital material-icons-name"></i>
                   </label>
+                
+                  
                   <input
+                   
                     type="text"
-                    name="locality"
-                    id="locality"
+                    name="qty"
+                    id="Quantity"
                     autoComplete="off"
-                    placeholder="Your Locality"
+                    placeholder="no. of ventilators"
                   />
+                 
                 </div>
+                <div className="form-group ">
+                  <label htmlFor="medical equipment">
+                    <i class="zmdi zmdi-hospital material-icons-name"></i>
+                  </label>
+                
+                  
+                  <input
+                   
+                    type="text"
+                    name="qty"
+                    id="Quantity"
+                    autoComplete="off"
+                    placeholder="no. of oxygen cylinders"
+                  />
+                 
+                </div>
+            
+                
 
                 <div className="form-group form-button">
                   <input
