@@ -6,6 +6,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import {setGlobalState,useGlobalState} from './state';
 import Navbar from './Navbar';
+import atob from 'atob'
 
 function LoginUi() {
 
@@ -26,7 +27,9 @@ function LoginUi() {
     axios.post("http://localhost:5000/api/v1/auth/login",{
         email,password
     }).then(res=>{
-      console.log(res)
+      console.log(res.data.token)
+      const role =JSON.parse(atob(res.data.token.split(".")[1]))
+      setGlobalState("token",role)
       setGlobalState("LoggedIn",true)
       setGlobalState("loggedInUser",email)
       
@@ -36,7 +39,7 @@ function LoginUi() {
   }
   console.log(formData)
   console.log(useGlobalState('loggedInUser'))
-  console.log(useGlobalState('LoggedIn'))
+  console.log(useGlobalState('token'))
   return (
     <>
     <Navbar />

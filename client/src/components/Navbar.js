@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {setGlobalState,useGlobalState} from './state';
 const Navbar = () =>{
    const isloggedIn=useGlobalState("LoggedIn")[0]
+   const userRole=useGlobalState("token")[0]['role']
     return (
         <>
         <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">
@@ -26,11 +27,14 @@ const Navbar = () =>{
       <li class="nav-item">
         <Link style={{color:'black'}} class="nav-link" to="/chronic">chronic disease</Link>
       </li>
-      <li class="nav-item">
+      {
+        userRole==='USER'?null:<li class="nav-item">
         <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
       </li>
+      }
+      
       {
-        isloggedIn?<Link style={{color:'black'}} class="nav-link" to="/resources">Logout</Link>:<div >
+        isloggedIn?<Link style={{color:'black'}} class="nav-link" to="/">Logout</Link>:<div >
           <li class="nav-item" class='afterLogin d-flex justify-content-center align-items-center flex-row'>
         <Link style={{color:'black'}} class="nav-link" to="/LoginUi">Login</Link>
         <div class="dropdown">
