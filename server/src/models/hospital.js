@@ -8,9 +8,27 @@ const hospitalSchema = new mongoose.Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
   password: { type: String, required: true },
-  
+
   role: { type: String, default: 'HOSPITAL' },
   approved: { type: Boolean, default: false },
+  resources: {
+    general: {
+      type: Number,
+      required: true,
+    },
+    icu: {
+      type: Number,
+      required: true,
+    },
+    oxy: {
+      type: Number,
+      required: true,
+    },
+    ventilator: {
+      type: Number,
+      required: true,
+    },
+  },
 });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);
