@@ -43,30 +43,51 @@ exports.signupUser = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
+
   try {
     const user = await User.findOne({ email }).select('+password');
-    if (!user) {
+    const hospital = await Hospital.findOne({ email }).select('+password');
+    if (!user || !hospital) {
       return next(errorHelper('User with given email does not exist', 404, []));
     }
-    const isMatch = await bcrypt.compare(password, user.password);
-    console.log(isMatch);
-    if (!isMatch) {
-      return next(errorHelper('Invalid Credentials', 403, []));
+    if (user) {
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return next(errorHelper('Invalid Credentials', 403, []));
+      }
+      const token = jwt.sign(
+        {
+          email: user.email,
+          id: user._id,
+          role: user.role,
+        },
+        'supersecretjwtsecretkey'
+      );
+      return res.status(200).json({
+        message: 'Login successful',
+        status: 200,
+        token,
+      });
     }
-   
-    const token = jwt.sign(
-      {
-        email: user.email,
-        id: user._id,
-        role: user.role,
-      },
-      'supersecretjwtsecretkey'
-    );
-    return res.status(200).json({
-      message: 'Login successful',
-      status: 200,
-      token,
-    });
+    if (hospital) {
+      const isMatch = await bcrypt.compare(password, hospital.password);
+      if (!isMatch) {
+        return next(errorHelper('Invalid Credentials', 403, []));
+      }
+      const token = jwt.sign(
+        {
+          email: hospital.email,
+          id: hospital._id,
+          role: hospital.role,
+        },
+        'supersecretjwtsecretkey'
+      );
+      return res.status(200).json({
+        message: 'Login successful',
+        status: 200,
+        token,
+      });
+    }
   } catch (error) {
     return next(errorHelper(error.message, 500, []));
   }
