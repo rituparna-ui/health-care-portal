@@ -28,9 +28,9 @@ const Navbar = () =>{
         <Link style={{color:'black'}} class="nav-link" to="/chronic">chronic disease</Link>
       </li>
       {
-        userRole==='USER'?null:<li class="nav-item">
+        userRole==='USER' && isloggedIn ?<li class="nav-item">
         <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
-      </li>
+      </li>:null
       }
       
       {

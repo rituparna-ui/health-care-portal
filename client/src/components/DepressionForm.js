@@ -109,7 +109,7 @@ export default function DepressionForm(){
       {
           result.map((key,val)=>(
             <div class='infoDiabetic'>
-            <h2 style={{color:'orange'}}>{key}</h2>
+            <h2 style={{color:'orange',fontFamily:'Bebas Neue',fontSize:'60px'}}>{key}</h2>
             <div class='preventDiabetes'>
             <h5 style={{color:'#00A6A6'}}>
             You have more power over depression than you may think.

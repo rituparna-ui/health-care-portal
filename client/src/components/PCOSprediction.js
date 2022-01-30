@@ -8,8 +8,8 @@ export default function PCOSPrediction(){
   const[data,setData]=useState("")
   const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
-  const[displayResult,setDisplayResult]=useState(false)
-  const[result,setResult]=useState([0])
+  const[displayResult,setDisplayResult]=useState(true)
+  const[result,setResult]=useState([1])
 
   const initialValue={
     
@@ -139,7 +139,7 @@ export default function PCOSPrediction(){
        result.map((key,val)=>{
           if(key===0){
             return <div class='infoDiabetic'>
-            <h2 style={{color:'green'}}>You don't have PCOS</h2>
+            <h2 style={{color:'green',fontFamily:'Bebas Neue',fontSize:'60px'}}>You don't have PCOS</h2>
             <div class='preventDiabetes'>
               <p>
               Polycystic Ovary Syndrome (PCOS) is the most common hormonal condition in 
@@ -165,8 +165,8 @@ export default function PCOSPrediction(){
           </div>
           }else if(key===1){
             return <div class='infoDiabetic'>
-            <h2 style={{color:'red'}}>You have PCOS</h2>
-            <div class='preventDiabetes'>
+            <h1 style={{color:'red',fontFamily:'Bebas Neue',fontSize:'60px'}}>You have PCOS</h1>
+            <div class='preventDiabetes' >
               <p>
               Polycystic Ovary Syndrome (PCOS) is the most common hormonal condition in 
               reproductive age women. It usually affects up to 10% of women.

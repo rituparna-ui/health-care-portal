@@ -6,6 +6,7 @@ import atob from 'atob'
 import {setGlobalState,useGlobalState} from './state';
 const Resources = () => {
   const token= useGlobalState('token')[0]
+  const loggedIn=useGlobalState('LoggedIn')[0]
   const[checkUser,setCheckUser]=useState(false)
   useEffect(()=>{
     console.log(token['role'])
@@ -45,7 +46,7 @@ const Resources = () => {
   return (
     <>
      {
-       checkUser?<div>
+       checkUser && loggedIn ?<div>
          <Navbar/>
 
 <div className="container2 ">
