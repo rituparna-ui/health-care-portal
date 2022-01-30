@@ -105,11 +105,39 @@ export default function DepressionForm(){
      {displayResult ?
      (
       <>
-      <h1>Result</h1>
+      
       {
           result.map((key,val)=>(
-            <p>{key}</p>
-        ))
+            <div class='infoDiabetic'>
+            <h2 style={{color:'orange'}}>{key}</h2>
+            <div class='preventDiabetes'>
+            <h5 style={{color:'#00A6A6'}}>
+            You have more power over depression than you may think.
+             These tips can help you feel happier, healthier, and more hopeful.
+
+            </h5>
+            <ul>
+              <li>Reach out and stay connected</li>
+              <li>Do things that make you feel good</li>
+              <li>Get moving</li>
+              <li>Eat a healthy, depression-fighting diet</li>
+              <li>Get a daily dose of sunlight</li>
+              <li>Challenge negative thinking</li>
+            </ul>
+            <p >
+            
+            Seek professional help ,needing additional help doesn’t mean you’re weak. Sometimes the negative thinking in depression can make you feel like you’re a lost cause,
+             but depression can be treated and you can feel better!
+
+             Don’t forget about these self-help tips, though. 
+             Even if you’re receiving professional help, these tips can be 
+             part of your treatment plan, speeding your recovery and preventing depression 
+             from returning.
+            </p>
+            <a href="https://www.helpguide.org/articles/depression/coping-with-depression.htm">know more...</a>
+            </div>
+          </div>
+          ))
       }
       </>
 

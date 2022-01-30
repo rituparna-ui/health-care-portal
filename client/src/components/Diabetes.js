@@ -160,6 +160,7 @@ export default function Diabetes(){
                    </h4>
                    Absolutely! You can turn back your prediabetes by adopting lifestyle changes, including:
                    <ul>
+                     
                      <li>Monitor your blood sugar with your doctor. </li>
                      <li>Ensure you get enough sleep.</li>
                      <li>Reduce your stress. </li>
@@ -169,6 +170,7 @@ export default function Diabetes(){
                      <li> Shed a few pounds. </li>
                      
                    </ul>
+                   <p>note ** We recommend you to visit your doctor for necessary medication and proper guidance</p>
                    <a href="https://www.cdc.gov/diabetes/basics/prediabetes.html">read more...</a>
                  </div>
                </div>
@@ -205,6 +207,7 @@ export default function Diabetes(){
                  
                   
                 </ul>
+                <p>note ** We recommend you to visit your doctor for necessary medicine and proper guidance</p>
                 <a href="https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-management/art-20047963">read more...</a>
               </div>
             </div>
