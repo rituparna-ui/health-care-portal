@@ -8,8 +8,8 @@ export default function PCOSPrediction(){
   const[data,setData]=useState("")
   const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
-  const[displayResult,setDisplayResult]=useState(true)
-  const[result,setResult]=useState([1])
+  const[displayResult,setDisplayResult]=useState(false)
+  const[result,setResult]=useState([])
 
   const initialValue={
     
