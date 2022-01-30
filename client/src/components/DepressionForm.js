@@ -8,8 +8,8 @@ export default function DepressionForm(){
   const[data,setData]=useState("")
   const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
-  const[displayResult,setDisplayResult]=useState(false)
-  const[result,setResult]=useState([])
+  const[displayResult,setDisplayResult]=useState(true)
+  const[result,setResult]=useState(['Moderate'])
 
   const initialValue={
     
@@ -109,14 +109,16 @@ export default function DepressionForm(){
       {
           result.map((key,val)=>(
             <div class='infoDiabetic'>
-            <h2 style={{color:'orange',fontFamily:'Bebas Neue',fontSize:'60px'}}>{key}</h2>
-            <div class='preventDiabetes'>
-            <h5 style={{color:'#00A6A6'}}>
-            You have more power over depression than you may think.
-             These tips can help you feel happier, healthier, and more hopeful.
+            <h2 style={{color:'orange',fontFamily:'Bebas Neue',fontSize:'70px'}}>{key}</h2>
+            <h5 style={{color:'#00A6A6',fontSize:'16px',textAlign:'center'}}>
+            You have more power over depression than you may think !
+            
 
             </h5>
-            <ul>
+            <div class='preventDiabetes'>
+           
+            <p> These tips can help you feel happier, healthier, and more hopeful.</p>
+            <ul class={{fontSize:'12px'}}>
               <li>Reach out and stay connected</li>
               <li>Do things that make you feel good</li>
               <li>Get moving</li>
