@@ -143,3 +143,21 @@
     font-size:14px;
     
   }
+
+  @media screen and (max-width:786px) {
+    #register{
+      width: 60%;
+    }
+    .preventDiabetes{
+      width:70%;
+    }
+  }
+  
+  @media screen and (max-width:786px) {
+    #register{
+      width: 90%;
+    }
+    .preventDiabetes{
+      width:90%;
+    }
+  }

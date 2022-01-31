@@ -51,7 +51,7 @@ const Symptom=()=>{
        <Navbar/>
          <h1 className="heading">Heading</h1>
          <div className="symContainer">
-             <div style={{width:'50%'}}>
+             <div class="searchSize" style={{width:'50%'}}>
                  <Multiselect
                  class="symSearch"
                  isObject={false}

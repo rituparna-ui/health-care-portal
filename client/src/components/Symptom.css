@@ -36,3 +36,16 @@
 .allSymButtons{
     width:50%;
 }
+
+@media screen and (max-width:786px) {
+    .symContainer{
+        margin-top:50%;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .searchSize{
+        width:90% !important;
+    }
+}

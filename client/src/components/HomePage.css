@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image:url(../images/homepage-back.png);
+    background-image:url(../images/background.png);
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -94,5 +94,18 @@
        flex-direction: column !important;
        justify-content: flex-start !important;
        align-items: flex-start !important;
+   }
+   .cardContainer{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       flex-direction: column;
+   }
+   .card{
+       width: 90%;
+       margin-left:0px !important;
+       margin-bottom: 20px;
+   }.serviceContainer{
+       margin-top: 50%;
    }
 }

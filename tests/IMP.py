@@ -1,48 +1,3 @@
-from fastapi import FastAPI
-from fastapi.params import Body
-
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-from sklearn import tree
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import SGDClassifier
-df = pd.read_csv('final_diabetes_data.csv')
-df1=pd.read_csv('PCOS_data_final.csv')
-df2=pd.read_csv('depression_data.csv')
-
-#Diabetes prediction
-X = df.drop(["Diabetes_012"], axis=1)
-Y = df["Diabetes_012"]
-
-rfc = RandomForestClassifier()
-rfc.fit(X, Y)
-
-
-
-
-df1['Fast food (Y/N)'].fillna(df1['Fast food (Y/N)'].median(),inplace=True)
-
-#PCOS prediction
-X1=df1.drop("PCOS (Y/N)",axis=1)
-Y1=df1["PCOS (Y/N)"]
-
-rfc1=RandomForestClassifier(criterion='gini',max_depth=12,max_features='log2',n_estimators=200,n_jobs=1)
-rfc1.fit(X1,Y1)
-
-
-
-#Depression prediction
-Y2=df2['Category']
-X2=df2.drop('Category',axis=1)
-
-rfc2=RandomForestClassifier()
-rfc2.fit(X2,Y2)
-
-
-app = FastAPI()
-
 
 @app.post('/diabetes')
 def predictDiabetes(body: dict = Body(...)):
@@ -53,6 +8,7 @@ def predictDiabetes(body: dict = Body(...)):
         body['diffWlk'], body['gender'], body['age']
     ]]))
     
+    print(accuracy_score())
     return {"answer": answer.tolist()}
 
 @app.post('/pcos')
@@ -78,7 +34,6 @@ def predictDepression(body:dict=Body(...)):
     ]]))
 
     return {"answer":answer.tolist()}
-
 
 
 
