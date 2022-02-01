@@ -176,6 +176,6 @@ def predictDepression(body:dict=Body(...)):
     for i in body:
         sum=sum+body[i]
     
-    answer=predictDisease(body)
+    answer=predictDisease(body['symptoms'])
 
     return {"answer":answer.tolist()}
