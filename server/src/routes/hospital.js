@@ -2,27 +2,31 @@ const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
 
+const errorHelper = require('./../utils/error');
+
 const authMiddleware = (req, res, next) => {
   const password = req.headers.authorization;
   console.log(password);
   if (password != 'qwertyuiop') {
-    return;
+    return next(errorHelper('unauth', 401, []));
   }
   next();
 };
+
+const jwtAuth = require('./../middleware/auth');
 
 const {
   request,
   getRequests,
   approveRequest,
   disapproveRequest,
+  resources,
 } = require('../controllers/hospital');
 
 router.post(
   '/request',
 
   [
-   
     body('name')
       .isLength({ min: 3 })
       .withMessage('Name should be at least 3 characters long'),
@@ -51,14 +55,11 @@ router.post(
       if (value != req.body.password) {
         throw new Error('Passwords do not match');
       } else {
-        
         return true;
       }
     }),
   ],
   request
-
-  
 );
 
 router.get('/requests', getRequests);
@@ -66,5 +67,7 @@ router.get('/requests', getRequests);
 router.post('/approve', authMiddleware, approveRequest);
 
 router.post('/disapprove', authMiddleware, disapproveRequest);
+
+router.post('/resources', jwtAuth, resources);
 
 module.exports = router;

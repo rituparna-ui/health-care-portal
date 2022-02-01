@@ -15,18 +15,22 @@ const hospitalSchema = new mongoose.Schema({
     general: {
       type: Number,
       required: true,
+      default: 0,
     },
     icu: {
       type: Number,
       required: true,
+      default: 0,
     },
     oxy: {
       type: Number,
       required: true,
+      default: 0,
     },
     ventilator: {
       type: Number,
       required: true,
+      default: 0,
     },
   },
 });
