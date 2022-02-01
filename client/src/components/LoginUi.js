@@ -6,11 +6,13 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import {setGlobalState,useGlobalState} from './state';
 import Navbar from './Navbar';
+import {useNavigate} from "react-router-dom"
 import atob from 'atob'
 
 function LoginUi() {
-
+  const history=useNavigate()
   const[formData,setFormData]=useState()
+  const[error,setError]=useState('')
   
 
   const changeHandler=(event)=>{
@@ -29,12 +31,14 @@ function LoginUi() {
     }).then(res=>{
       console.log(res.data.token)
       const role =JSON.parse(atob(res.data.token.split(".")[1]))
+      setGlobalState("jwtToken",res.data.token)
       setGlobalState("token",role)
       setGlobalState("LoggedIn",true)
       setGlobalState("loggedInUser",email)
-      
+      history('/')
     }).catch(err=>{
-      console.log(err)
+      console.log(err.response.data.message)
+      setError(err.response.data.message)
     })
   }
   console.log(formData)
@@ -44,8 +48,12 @@ function LoginUi() {
     <>
     <Navbar />
     <div className="main">
-      
+    {
+      error?<p style={{color:'red'}}><i class="zmdi zmdi-close-circle material-icons-name mr-2"></i>{error}</p>:null
+    }
+    
      <div className="sub-main">
+      
        <div>
          <div className="imgs">
            <div className="container-image">

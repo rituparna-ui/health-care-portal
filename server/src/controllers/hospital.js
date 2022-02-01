@@ -91,7 +91,9 @@ exports.disapproveRequest = async (req, res, next) => {
 };
 
 exports.resources = async (req, res, next) => {
+  
   if (req.user.role == 'USER') {
+    console.log(req.user.role)
     return next(errorHelper('Unauthorized', 401, []));
   }
   const { general, icu, oxy, ventilator } = req.body;

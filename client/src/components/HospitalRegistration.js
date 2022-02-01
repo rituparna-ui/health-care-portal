@@ -1,10 +1,12 @@
 import React,{useState} from 'react'
 import Navbar from './Navbar';
-
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 const HospitalRegistration = () =>{
    
   const[formData,setFormData]=useState()
+  const[error,setError]=useState([])
+  const navigate=useNavigate()
   const ChangeHandler=(event)=>{
     var{name,value}=event.target
    
@@ -21,9 +23,11 @@ const HospitalRegistration = () =>{
     name,email,phone,address,city,state,password,confPassword
   }).then(res=>{
     console.log(res)
+    navigate('/')
    
   }).catch(err=>{
     console.log(err)
+    setError(err.response.data.errors)
   })
 }
 
@@ -41,7 +45,15 @@ const HospitalRegistration = () =>{
         <section className="signup">
               <div className="container mt-5">
                   <div className="signup-content">
+            
                     <div className="signup-form">
+                    {
+              error.length==0?null:(
+                error.map((key,value)=>(
+                  <p style={{color:'red',fontSize:'12px',display:'block',marginLeft:'auto',marginRight:"auto",width:'60%',marginBottom:'-1px'}}><i class="zmdi zmdi-close-circle material-icons-name mr-2"></i>{key.msg}</p>
+                ))
+              )
+            }
                         
                        <form className="register-form" id="register-form">
                            <div className="form-group">

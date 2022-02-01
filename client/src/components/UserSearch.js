@@ -57,7 +57,7 @@ const UserSearch = () =>{
             })
             
         })*/
-        axios.post('http://localhost:5000/api/v1/search/hospitals',{
+        axios.post('http://localhost:5000/api/v1/hospitals/search',{
             resource,
             qty,
             location
@@ -92,10 +92,10 @@ const UserSearch = () =>{
         <div class='searchBar pt-3 d-flex flex-row justify-content-center align-items-center'>
            
             <select className='inputBox' placeholder='search' onChange={e=>setResource(e.target.value)}>
-                <option>search resources</option>
-                <option>blood</option>
+                <option>general ward beds</option>
+                <option>ICU beds</option>
                 <option>oxygen cylinders</option>
-                <option>beds</option>
+                <option>ventilators</option>
             </select>
             <input onChange={e=>setQty(e.target.value)} type='number' className='inputBox' placeholder='quantity'></input>
             <input onChange={e=>setLocation(e.target.value)}className='inputBox' placeholder='location'></input>
@@ -118,8 +118,8 @@ const UserSearch = () =>{
                         >
                                 <div className='iconResult'></div>
                                 <div className='d-flex flex-column sectionDivide'>
-                                    <h3 className='searchName'>{key.hosp}</h3>
-                                    <p className='textSearch'>{key.loc}</p>
+                                    <h3 className='searchName'>{key.name}</h3>
+                                    <p className='textSearch'>{key.address}</p>
                                     
                                 </div>
                                 <div class='sectionDivide '>
