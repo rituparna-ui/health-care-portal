@@ -8,6 +8,15 @@ from sklearn.metrics import accuracy_score
 from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import SGDClassifier
+from scipy.stats import mode
+
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import RandomForestClassifier
+
+
 df = pd.read_csv('final_diabetes_data.csv')
 df1=pd.read_csv('PCOS_data_final.csv')
 df2=pd.read_csv('depression_data.csv')
@@ -40,6 +49,87 @@ X2=df2.drop('Category',axis=1)
 rfc2=RandomForestClassifier()
 rfc2.fit(X2,Y2)
 
+data = pd.read_csv('./Training.csv',header=0).dropna(axis = 1)
+encoder = LabelEncoder()
+data["prognosis"] = encoder.fit_transform(data["prognosis"])
+XDisease = data.iloc[:,:-1]
+yDisease = data.iloc[:, -1]
+symptoms = data.columns.values
+
+final_svm_model = SVC()
+final_nb_model = GaussianNB()
+final_rf_model = RandomForestClassifier(random_state=18)
+final_svm_model.fit(XDisease, yDisease)
+final_nb_model.fit(XDisease, yDisease)
+final_rf_model.fit(XDisease, yDisease)
+
+symptoms = X.columns.values
+ 
+# Creating a symptom index dictionary to encode the
+# input symptoms into numerical form
+symptom_index = {}
+for index, value in enumerate(symptoms):
+    symptom = " ".join([i.capitalize() for i in value.split("_")])
+    symptom_index[symptom] = index
+ 
+data_dict = {
+    "symptom_index":symptom_index,
+    "predictions_classes":encoder.classes_
+}
+ 
+# Defining the Function
+# Input: string containing symptoms separated by commmas
+# Output: Generated predictions by models
+def predictDisease(symptoms):
+    symptoms = symptoms.split(",")
+     
+    # creating input data for the models
+    input_data = [0] * len(data_dict["symptom_index"])
+    for symptom in symptoms:
+        index = data_dict["symptom_index"][symptom]
+        input_data[index] = 1
+         
+    # reshaping the input data and converting it
+    # into suitable format for model predictions
+    input_data = np.array(input_data).reshape(1,-1)
+     
+    # generating individual outputs
+    rf_prediction = data_dict["predictions_classes"][final_rf_model.predict(input_data)[0]]
+    nb_prediction = data_dict["predictions_classes"][final_nb_model.predict(input_data)[0]]
+    svm_prediction = data_dict["predictions_classes"][final_svm_model.predict(input_data)[0]]
+     # making final prediction by taking mode of all predictions
+    final_prediction = mode([rf_prediction, nb_prediction, svm_prediction])[0][0]
+    predictions = {
+        "rf_model_prediction": rf_prediction,
+        "naive_bayes_prediction": nb_prediction,
+        "svm_model_prediction": nb_prediction,
+        "final_prediction":final_prediction
+    }
+    return predictions['final_prediction']
+
+def nextSet(st,selected):
+  res=''
+  st=set(st.split(','))
+  selected=st.split(',')
+  for i in selected:
+    st=st.intersection(neighbours[i])
+  for r in st:
+    res+=r+','
+  if res=='':
+    return res
+  else:
+    return res[:-1]
+
+mat=data.to_numpy()[:,:-1]
+neighbours={}
+for symp in range(0,mat.shape[1]):
+  ls=[]
+  for row in range(0,mat.shape[0]):
+    if mat[row][symp]==1:
+      for itr in range(0,mat.shape[1]):
+        if itr!=symp and mat[row][itr]==1 and not symptoms[itr] in ls:
+          ls.append(symptoms[itr])
+  neighbours[symptoms[symp]] = set(ls)
 
 app = FastAPI()
 
@@ -80,5 +170,12 @@ def predictDepression(body:dict=Body(...)):
     return {"answer":answer.tolist()}
 
 
+@app.post('/disease')
+def predictDepression(body:dict=Body(...)):
+    sum=0
+    for i in body:
+        sum=sum+body[i]
+    
+    answer=predictDisease(body)
 
-
+    return {"answer":answer.tolist()}
