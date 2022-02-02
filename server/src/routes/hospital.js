@@ -24,9 +24,7 @@ const {
 } = require('../controllers/hospital');
 const { postSearchHospital } = require('../controllers/search');
 
-const {
-  postSearchHospital
-} = require('../controllers/search');
+
 
 router.post(
   '/request',
@@ -75,10 +73,6 @@ router.post('/disapprove', authMiddleware, disapproveRequest);
 
 router.post('/resources', jwtAuth, resources);
 
-<<<<<<< HEAD
 router.post('/search',postSearchHospital);
-=======
-router.post('/search', postSearchHospital);
->>>>>>> ef0e0af306a702440598b9b502f574129003bdb8
 
 module.exports = router;

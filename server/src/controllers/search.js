@@ -35,6 +35,8 @@ exports.postSearchHospital = async (req, res, next) => {
       },
     });
 
+    console.log('hello',hospitals)
+
     // const array = [];
 
     // for (let index = 0; index < hospitals.length; index++) {
