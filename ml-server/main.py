@@ -49,12 +49,13 @@ X2=df2.drop('Category',axis=1)
 rfc2=RandomForestClassifier()
 rfc2.fit(X2,Y2)
 
+#disease prediction
 data = pd.read_csv('./Training.csv',header=0).dropna(axis = 1)
 encoder = LabelEncoder()
 data["prognosis"] = encoder.fit_transform(data["prognosis"])
 XDisease = data.iloc[:,:-1]
 yDisease = data.iloc[:, -1]
-symptoms = data.columns.values
+symptoms = XDisease.columns.values
 
 final_svm_model = SVC()
 final_nb_model = GaussianNB()
@@ -63,7 +64,7 @@ final_svm_model.fit(XDisease, yDisease)
 final_nb_model.fit(XDisease, yDisease)
 final_rf_model.fit(XDisease, yDisease)
 
-symptoms = X.columns.values
+
  
 # Creating a symptom index dictionary to encode the
 # input symptoms into numerical form
@@ -84,8 +85,10 @@ def predictDisease(symptoms):
     symptoms = symptoms.split(",")
      
     # creating input data for the models
+    
     input_data = [0] * len(data_dict["symptom_index"])
     for symptom in symptoms:
+        symptom = " ".join([i.capitalize() for i in symptom.split("_")])
         index = data_dict["symptom_index"][symptom]
         input_data[index] = 1
          
@@ -109,10 +112,14 @@ def predictDisease(symptoms):
 
 def nextSet(st,selected):
   res=''
+  selected=set(selected.split(','))
   st=set(st.split(','))
-  selected=st.split(',')
+  
+  
   for i in selected:
+    
     st=st.intersection(neighbours[i])
+   
   for r in st:
     res+=r+','
   if res=='':
@@ -122,14 +129,26 @@ def nextSet(st,selected):
 
 mat=data.to_numpy()[:,:-1]
 neighbours={}
+count=0
 for symp in range(0,mat.shape[1]):
   ls=[]
+  #print(mat.shape[0],mat.shape[1])
+  #print(symp)
   for row in range(0,mat.shape[0]):
     if mat[row][symp]==1:
+      count=count+1
       for itr in range(0,mat.shape[1]):
-        if itr!=symp and mat[row][itr]==1 and not symptoms[itr] in ls:
+
+        if itr!=symp and mat[row][itr]==1 and not symptoms[itr] in ls :
           ls.append(symptoms[itr])
+         
   neighbours[symptoms[symp]] = set(ls)
+#print(count)
+#print(mat.shape[1])
+#print(ls)
+#print(symptoms.size)
+#print(symptoms)
+
 
 app = FastAPI()
 
@@ -171,11 +190,62 @@ def predictDepression(body:dict=Body(...)):
 
 
 @app.post('/disease')
-def predictDepression(body:dict=Body(...)):
-    sum=0
-    for i in body:
-        sum=sum+body[i]
+def predictSymptoms(body:dict=Body(...)):
     
-    answer=predictDisease(body['symptoms'])
+    #print(body['answerState'])
+    
+    symptom_str=body['answerState']['answerState'][0]
+    for i in range(1,len(body['answerState']['answerState'])):
+      symptom_str+=','+body['answerState']['answerState'][i]
+    
+    allsymptoms=""
+    for temp in symptoms:
+      
+      allsymptoms+=temp+','
+   
+    
 
-    return {"answer":answer.tolist()}
+
+      
+    #answer=predictDisease(symptom_str)
+    
+    
+    #previousSymptoms=previousSymptoms+symptom_str
+    answer=[]
+    previousSymptoms=nextSet(allsymptoms,symptom_str)
+    if previousSymptoms!="":
+       previousSymptoms=nextSet(previousSymptoms,symptom_str)
+       answer=previousSymptoms.split(',')
+    
+       
+    
+      
+      
+       
+    
+    print("hello",previousSymptoms)
+    
+    
+
+   
+    print("hello",symptom_str)
+
+    return {"answer":answer}
+
+@app.post('/predict')
+def predictSymptoms(body:dict=Body(...)):
+    
+    #print(body['answerState'])
+    
+    symptom_str=body['answerState']['answerState'][0]
+    for i in range(1,len(body['answerState']['answerState'])):
+      symptom_str+=','+body['answerState']['answerState'][i]
+    
+    allsymptoms=""
+    for temp in symptoms:
+      
+      allsymptoms+=temp+','
+   
+    answer=predictDisease(symptom_str).tolist()
+    
+    return {"answer":answer}

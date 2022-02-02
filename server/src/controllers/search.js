@@ -1,5 +1,5 @@
 const Hospital = require('./../models/hospital');
-const geocode = require('./../utils/geocode');
+const geoCode = require('../utils/mygeocode');
 
 const getDistance = (lat1, lat2, lon1, lon2) => {
   lon1 = (lon1 * Math.PI) / 180;
@@ -18,12 +18,11 @@ const getDistance = (lat1, lat2, lon1, lon2) => {
 };
 
 exports.postSearchHospital = async (req, res, next) => {
-  const { resource, qty,location} = req.body;
-  console.log(location)
+  const { resource, qty, location } = req.body;
+  console.log(location);
 
   try {
-    const coordinates = await geocode(location);
-    console.log(coordinates.longitude,coordinates.latitude)
+    const coordinates = await geoCode(location);
     const hospitals = await Hospital.find({
       location: {
         $near: {
@@ -36,41 +35,41 @@ exports.postSearchHospital = async (req, res, next) => {
       },
     });
 
-    const array = [];
+    // const array = [];
 
-    for (let index = 0; index < hospitals.length; index++) {
-      const hospital = hospitals[index];
-      if (hospital.resources[resource.toLowerCase()] >= quantity) {
-        const distance = getDistance(
-          coordinates.longitude,
-          coordinates.latitude,
-          hospital.location.coordinates[0],
-          hospital.location.coordinates[1]
-        );
-        array.push({ ...hospital, distance });
-      } else {
-        const distance = getDistance(
-          coordinates.latitude,
-          hospital.location.coordinates[1],
-          coordinates.longitude,
-          hospital.location.coordinates[0]
-        );
-        if (hospital.resources[resource] > 0) {
-          array.push({
-            name: hospital.name,
-            address: hospital.address,
-            location: hospital.location,
-            requested: resource,
-            available: hospital.resources[resource],
-            distance,
-          });
-        }
-      }
-    }
-   
+    // for (let index = 0; index < hospitals.length; index++) {
+    //   const hospital = hospitals[index];
+    //   if (hospital.resources[resource.toLowerCase()] >= qty) {
+    //     const distance = getDistance(
+    //       coordinates.longitude,
+    //       coordinates.latitude,
+    //       hospital.location.coordinates[0],
+    //       hospital.location.coordinates[1]
+    //     );
+    //     array.push({ ...hospital, distance });
+    //   } else {
+    //     const distance = getDistance(
+    //       coordinates.latitude,
+    //       hospital.location.coordinates[1],
+    //       coordinates.longitude,
+    //       hospital.location.coordinates[0]
+    //     );
+    //     if (hospital.resources[resource] > 0) {
+    //       array.push({
+    //         name: hospital.name,
+    //         address: hospital.address,
+    //         location: hospital.location,
+    //         requested: resource,
+    //         available: hospital.resources[resource],
+    //         distance,
+    //       });
+    //     }
+    //   }
+    // }
+
     return res.status(200).json({
       message: 'Showing results for hospitals within 200kms',
-      hospitals: array,
+      hospitals,
     });
   } catch (error) {
     return next(error);

@@ -1,28 +1,23 @@
+const key = 'QW4cfkO7iasbJlNMPxBKU0Tv8rht3h9K';
+// console.log(result.data.results[0].locations[0].latLng)
+
 const axios = require('axios').default;
 
 module.exports = (address) => {
-  const replaced = address.replace(/ /g, '+').trim();
-
-  const promise = new Promise((res, rej) => {
+  const encoded = address.split(',').join('+');
+  const promise = new Promise((resolve, reject) => {
     axios
-      .get('https://google.com/maps/search/' + replaced)
+      .get('http://www.mapquestapi.com/geocoding/v1/address', {
+        params: {
+          key,
+          location: encoded,
+        },
+      })
       .then((result) => {
-        const coords = result.data
-          .split('https://www.google.com/maps/preview/place/')[1]
-          .split('/')[1]
-          .split(',');
-        const latitude = coords[0].split('@')[1];
-        const longitude = coords[1];
-        res({
-          latitude,
-          longitude,
-        });
+        resolve(result.data.results[0].locations[0].latLng);
       })
       .catch((err) => {
-        rej({
-          message: 'Could not fetch coordinates',
-          address: 'Please enter valid address',
-        });
+        reject(err);
       });
   });
   return promise;
