@@ -47,7 +47,7 @@
 .cardContainer{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     flex-direction: row;
     padding-top:10%;
 }
@@ -57,7 +57,7 @@
     margin-left:20px;
     padding:30px;
     display: flex;
-    justify-content: center;
+    
     align-items: center;
     flex-direction: column;
     box-shadow: 6px 0px 24px -4px rgba(0,0,0,0.64);

@@ -8,7 +8,7 @@ const Navbar = () =>{
    console.log(isloggedIn)
     return (
         <>
-        <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">
+        <nav style={{backgroundColor:'white',fontSize:'13px'}} class="navbar navbar-expand-md  ">
   
   <Link style={{color:'black'}}class="nav-link" to="/">Home</Link>
 
@@ -18,7 +18,7 @@ const Navbar = () =>{
   </button>
 
   <div class="collapse navbar-collapse " id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav" style={{justifyContent:'center',alignItems:'center'}}>
       <li class="nav-item">
         <Link style={{color:'black'}}class="nav-link" to="/symptoms">Treatment and Symptom Report</Link>
       </li>
@@ -29,15 +29,9 @@ const Navbar = () =>{
         <Link style={{color:'black'}} class="nav-link" to="/chronic">Chronic Disease Detection</Link>
       </li>
       {
-<<<<<<< HEAD
-        userRole==='USER'?null:<li class="nav-item">
-        <Link style={{color:'black'}} class="nav-link" to="/resources">Medical Resource Registration</Link>
-      </li>
-=======
         userRole!=='USER' && isloggedIn ?<li class="nav-item">
         <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
       </li>:null
->>>>>>> cef7e60b2e9694d9fb4f129e521de06d9f317abf
       }
       
       {
@@ -45,7 +39,7 @@ const Navbar = () =>{
           <li class="nav-item" class='afterLogin d-flex justify-content-center align-items-center flex-row'>
         <Link style={{color:'black'}} class="nav-link" to="/LoginUi">Login</Link>
         <div class="dropdown">
-  <button class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button style={{fontSize:'13px'}} class="btn dropdown-toggle nav-link" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Register
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

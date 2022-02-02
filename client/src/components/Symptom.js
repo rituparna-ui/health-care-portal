@@ -110,19 +110,7 @@ const Symptom=()=>{
    return(
        <>
        <Navbar/>
-<<<<<<< HEAD
          <h1 className="heading">Summarised Report of Symptoms and Treatment</h1>
-         <div className="symContainer">
-             <div style={{width:'50%'}}>
-                 <Multiselect
-                 class="symSearch"
-                 isObject={false}
-                 options={initialSymptom}
-                 ref={multiselectRef}
-                 />
-
-=======
-         <h1 className="heading">Heading</h1>
          {
              !displayAnswer?(
                 <div className="symContainer">
@@ -164,7 +152,6 @@ const Symptom=()=>{
                 
                 
                
->>>>>>> cef7e60b2e9694d9fb4f129e521de06d9f317abf
                 
    
             </div>
