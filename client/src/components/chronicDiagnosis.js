@@ -30,7 +30,7 @@ const ChronicDiagnosis=()=>{
                      <AssignmentIcon></AssignmentIcon>
                  </div>
                  <h5 style={{fontSize:'18px',color:'#F49F0A'}} className="heading">
-                 <Link style={{color:'#F49F0A'}} to="/pcos">PCOS Predcition</Link></h5>
+                 <Link style={{color:'#F49F0A'}} to="/pcos">PCOS Prediction</Link></h5>
                   <p> This feature gives results of over 97 percentage accuracy on the risks of you having PCOS after you have answered a few simple questions regarding your lifestyle upto an accuracy of 97 percent.
                   </p>
                  </div>
@@ -39,7 +39,7 @@ const ChronicDiagnosis=()=>{
                      <NoteAddIcon></NoteAddIcon>
                  </div>
                  <h5 style={{fontSize:'18px',color:'#F49F0A'}} className="heading">
-                 <Link style={{color:'#F49F0A'}} to="/depression">Depression Predcition</Link></h5>
+                 <Link style={{color:'#F49F0A'}} to="/depression">Clinical Depression Prediction</Link></h5>
                   <p>This feature provides results on your risks of having clinical depression after you have answered a few simple questions regarding your lifestyle upto an accuracy of 97 percent.
                   </p>
                  </div>
