@@ -70,7 +70,6 @@ exports.approveRequest = async (req, res, next) => {
     const coodrs = await geoCode(hospital.address);
     hospital.location.coordinates = [coodrs.lng, coodrs.lat];
     await hospital.save();
-    console.log(hospital);
     return res.status(200).json({
       message: 'success',
     });

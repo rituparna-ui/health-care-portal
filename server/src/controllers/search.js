@@ -1,5 +1,5 @@
 const Hospital = require('./../models/hospital');
-const geoCode = require('../utils/geocode');
+const geoCode = require('../utils/mygeocode');
 
 const getDistance = (lat1, lat2, lon1, lon2) => {
   lon1 = (lon1 * Math.PI) / 180;
@@ -39,7 +39,7 @@ exports.postSearchHospital = async (req, res, next) => {
 
     // for (let index = 0; index < hospitals.length; index++) {
     //   const hospital = hospitals[index];
-    //   if (hospital.resources[resource.toLowerCase()] >= quantity) {
+    //   if (hospital.resources[resource.toLowerCase()] >= qty) {
     //     const distance = getDistance(
     //       coordinates.longitude,
     //       coordinates.latitude,

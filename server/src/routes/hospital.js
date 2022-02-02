@@ -22,6 +22,7 @@ const {
   disapproveRequest,
   resources,
 } = require('../controllers/hospital');
+const { postSearchHospital } = require('../controllers/search');
 
 router.post(
   '/request',
@@ -69,5 +70,7 @@ router.post('/approve', authMiddleware, approveRequest);
 router.post('/disapprove', authMiddleware, disapproveRequest);
 
 router.post('/resources', jwtAuth, resources);
+
+router.post('/search', postSearchHospital);
 
 module.exports = router;

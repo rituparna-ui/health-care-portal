@@ -7,9 +7,12 @@ module.exports = (address) => {
   const encoded = address.split(',').join('+');
   const promise = new Promise((resolve, reject) => {
     axios
-      .get(
-        `http://www.mapquestapi.com/geocoding/v1/address?key=${key}&location=${encoded}`
-      )
+      .get('http://www.mapquestapi.com/geocoding/v1/address', {
+        params: {
+          key,
+          location: encoded,
+        },
+      })
       .then((result) => {
         resolve(result.data.results[0].locations[0].latLng);
       })
