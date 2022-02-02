@@ -1,25 +1,9 @@
 const Hospital = require('./../models/hospital');
 const geoCode = require('../utils/mygeocode');
-
-const getDistance = (lat1, lat2, lon1, lon2) => {
-  lon1 = (lon1 * Math.PI) / 180;
-  lon2 = (lon2 * Math.PI) / 180;
-  lat1 = (lat1 * Math.PI) / 180;
-  lat2 = (lat2 * Math.PI) / 180;
-  let dlon = lon2 - lon1;
-  let dlat = lat2 - lat1;
-  let a =
-    Math.pow(Math.sin(dlat / 2), 2) +
-    Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
-
-  let c = 2 * Math.asin(Math.sqrt(a));
-  let r = 6371;
-  return c * r;
-};
+const geolib = require('geolib');
 
 exports.postSearchHospital = async (req, res, next) => {
-  const { resource, qty, location } = req.body;
-  console.log(location);
+  const { location } = req.body;
 
   try {
     const coordinates = await geoCode(location);
@@ -33,8 +17,9 @@ exports.postSearchHospital = async (req, res, next) => {
           },
         },
       },
-    });
+    }).select('-password -approved -role');
 
+<<<<<<< HEAD
     console.log('hello',hospitals)
 
     // const array = [];
@@ -68,10 +53,27 @@ exports.postSearchHospital = async (req, res, next) => {
     //     }
     //   }
     // }
+=======
+    const array = hospitals.map((hospital) => {
+      return {
+        ...hospital._doc,
+        distance: geolib.getDistance(
+          {
+            longitude: hospital.location.coordinates[0],
+            latitude: hospital.location.coordinates[1],
+          },
+          {
+            longitude: coordinates.longitude,
+            latitude: coordinates.latitude,
+          }
+        ),
+      };
+    });
+>>>>>>> b05faf5001967e4773f6abe5c11bcf46b2cee0fa
 
     return res.status(200).json({
       message: 'Showing results for hospitals within 200kms',
-      hospitals,
+      hospitals: array,
     });
   } catch (error) {
     return next(error);
