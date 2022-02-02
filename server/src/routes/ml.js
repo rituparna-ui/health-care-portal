@@ -174,6 +174,7 @@ router.post('/predict', (req, res, next) => {
       return res.status(200).json({
         message: 'Prediction Results',
         probabilityArray: response.data,
+        
       });
     })
     .catch((e) => {

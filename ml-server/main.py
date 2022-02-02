@@ -231,13 +231,14 @@ def predictSymptoms(body:dict=Body(...)):
     print("hello",symptom_str)
 
     return {"answer":answer}
-
+df_disease=pd.read_csv('symptom_Description.csv')
 @app.post('/predict')
 def predictSymptoms(body:dict=Body(...)):
     
     #print(body['answerState'])
     
     symptom_str=body['answerState']['answerState'][0]
+    other_symp=neighbours[symptom_str]
     for i in range(1,len(body['answerState']['answerState'])):
       symptom_str+=','+body['answerState']['answerState'][i]
     
@@ -247,5 +248,16 @@ def predictSymptoms(body:dict=Body(...)):
       allsymptoms+=temp+','
    
     answer=predictDisease(symptom_str).tolist()
-    
-    return {"answer":answer}
+
+    other_symp=list(other_symp)[:5]
+    precaution=[]
+
+    df_temp=df_disease.loc[df_disease['Disease']==answer]
+    description=df_temp['Description'].iloc[0]
+    print(description)
+    precaution.append(df_temp['Precaution_1'].iloc[0])
+    precaution.append(df_temp['Precaution_2'].iloc[0])
+    precaution.append(df_temp['Precaution_3'].iloc[0])
+    precaution.append(df_temp['Precaution_4'].iloc[0])
+    print(precaution)
+    return {"answer":answer,"other_symp":other_symp,"description":description,"precaution":precaution}
