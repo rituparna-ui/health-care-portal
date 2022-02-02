@@ -19,7 +19,6 @@ exports.postSearchHospital = async (req, res, next) => {
         },
       },
     }).select('-password -approved -role');
-    console.log('hello',hospitals)
 
     const array = hospitals.map((hospital) => {
       return {

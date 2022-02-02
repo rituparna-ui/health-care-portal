@@ -5,6 +5,8 @@ const Hospital = require('./../models/hospital');
 const errorHelper = require('./../utils/error');
 const geoCode = require('./../utils/mygeocode');
 
+const { approvalMail } = require('./../utils/mailer');
+
 exports.request = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -70,6 +72,13 @@ exports.approveRequest = async (req, res, next) => {
     const coodrs = await geoCode(hospital.address);
     hospital.location.coordinates = [coodrs.longitude, coodrs.latitude];
     await hospital.save();
+    approvalMail(hospital)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log('err sending');
+      });
     return res.status(200).json({
       message: 'success',
     });
