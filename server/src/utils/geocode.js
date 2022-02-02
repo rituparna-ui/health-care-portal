@@ -4,7 +4,7 @@ const key = 'QW4cfkO7iasbJlNMPxBKU0Tv8rht3h9K';
 const axios = require('axios').default;
 
 module.exports = (address) => {
-  const encoded = address.split(',').join('+');
+  const encoded = address.replace(/ /g, '+').trim();
   const promise = new Promise((resolve, reject) => {
     axios
       .get('http://www.mapquestapi.com/geocoding/v1/address', {
