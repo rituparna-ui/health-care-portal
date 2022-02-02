@@ -8,9 +8,17 @@ const hospitalSchema = new mongoose.Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
   password: { type: String, required: true },
-
   role: { type: String, default: 'HOSPITAL' },
   approved: { type: Boolean, default: false },
+  location: {
+    type: {
+      type: String,
+      enum: ['Point'],
+    },
+    coordinates: {
+      type: [Number],
+    },
+  },
   resources: {
     general: {
       type: Number,
@@ -34,5 +42,7 @@ const hospitalSchema = new mongoose.Schema({
     },
   },
 });
+
+hospitalSchema.index({ location: '2dsphere' });
 
 module.exports = mongoose.model('Hospital', hospitalSchema);

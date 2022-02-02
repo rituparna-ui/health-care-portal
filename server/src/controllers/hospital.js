@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
-const user = require('../models/user');
 
 const Hospital = require('./../models/hospital');
 const errorHelper = require('./../utils/error');
+const geoCode = require('./../utils/geocode');
 
 exports.request = async (req, res, next) => {
   const errors = validationResult(req);
@@ -66,6 +66,9 @@ exports.approveRequest = async (req, res, next) => {
       return next(errorHelper('Hospital not found', 404, []));
     }
     hospital.approved = true;
+    hospital.location.type = 'Point';
+    const coodrs = await geoCode(hospital.address);
+    hospital.location.coordinates = [coodrs.lng, coodrs.lat];
     await hospital.save();
     console.log(hospital);
     return res.status(200).json({
@@ -91,9 +94,8 @@ exports.disapproveRequest = async (req, res, next) => {
 };
 
 exports.resources = async (req, res, next) => {
-  
   if (req.user.role == 'USER') {
-    console.log(req.user.role)
+    console.log(req.user.role);
     return next(errorHelper('Unauthorized', 401, []));
   }
   const { general, icu, oxy, ventilator } = req.body;
