@@ -1,4 +1,4 @@
-const key = QW4cfkO7iasbJlNMPxBKU0Tv8rht3h9K;
+const key = 'QW4cfkO7iasbJlNMPxBKU0Tv8rht3h9K';
 // console.log(result.data.results[0].locations[0].latLng)
 
 const axios = require('axios').default;
