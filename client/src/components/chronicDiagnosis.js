@@ -19,12 +19,10 @@ const ChronicDiagnosis=()=>{
                          <LocalHospitalIcon size="large"></LocalHospitalIcon>
                      </div>
                      <h5 style={{fontSize:'18px',color:'#F49F0A'}} className="heading">
-                     <Link style={{color:'#F49F0A'}}  to="/diabetes">Diabetes Predcition</Link>
+                     <Link style={{color:'#F49F0A'}}  to="/diabetes">Diabetes Prediction</Link>
                          </h5>
-                  <p>jdhfksjlsd
-                      dslfjsldgkjs
-                      sdfhlsjfpoewirpewi isuhfoiweuto
-                      dskufhoewsjgpwi sefiho
+                  <p>
+                      This feature predicts the risks of you having diabetes after you have answered a few simple questions regarding your lifestyle upto an accuracy of 97 percent.
                   </p>
                  </div>
                  <div className="card">
@@ -33,10 +31,7 @@ const ChronicDiagnosis=()=>{
                  </div>
                  <h5 style={{fontSize:'18px',color:'#F49F0A'}} className="heading">
                  <Link style={{color:'#F49F0A'}} to="/pcos">PCOS Predcition</Link></h5>
-                  <p>jdhfksjlsd
-                      dslfjsldgkjs
-                      sdfhlsjfpoewirpewi isuhfoiweuto
-                      dskufhoewsjgpwi sefiho
+                  <p> This feature gives results of over 97 percentage accuracy on the risks of you having PCOS after you have answered a few simple questions regarding your lifestyle upto an accuracy of 97 percent.
                   </p>
                  </div>
                  <div className="card">
@@ -45,10 +40,7 @@ const ChronicDiagnosis=()=>{
                  </div>
                  <h5 style={{fontSize:'18px',color:'#F49F0A'}} className="heading">
                  <Link style={{color:'#F49F0A'}} to="/depression">Depression Predcition</Link></h5>
-                  <p>jdhfksjlsd
-                      dslfjsldgkjs
-                      sdfhlsjfpoewirpewi isuhfoiweuto
-                      dskufhoewsjgpwi sefiho
+                  <p>This feature provides results on your risks of having clinical depression after you have answered a few simple questions regarding your lifestyle upto an accuracy of 97 percent.
                   </p>
                  </div>
               </div>

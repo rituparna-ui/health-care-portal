@@ -9,7 +9,7 @@ const Navbar = () =>{
         <>
         <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">
   
-  <Link style={{color:'black'}}class="nav-link" to="/">Navbar</Link>
+  <Link style={{color:'black'}}class="nav-link" to="/">Home</Link>
 
   
   <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -19,17 +19,17 @@ const Navbar = () =>{
   <div class="collapse navbar-collapse " id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <Link style={{color:'black'}}class="nav-link" to="/symptoms">Link</Link>
+        <Link style={{color:'black'}}class="nav-link" to="/symptoms">Treatment and Symptom Report</Link>
       </li>
       <li class="nav-item">
-        <Link style={{color:'black'}} class="nav-link" to="/usersearch">Link</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/usersearch">Resource Inventory</Link>
       </li>
       <li class="nav-item">
-        <Link style={{color:'black'}} class="nav-link" to="/chronic">chronic disease</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/chronic">Chronic Disease Detection</Link>
       </li>
       {
         userRole==='USER'?null:<li class="nav-item">
-        <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
+        <Link style={{color:'black'}} class="nav-link" to="/resources">Medical Resource Registration</Link>
       </li>
       }
       

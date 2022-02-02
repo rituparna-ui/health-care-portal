@@ -49,7 +49,7 @@ const Symptom=()=>{
    return(
        <>
        <Navbar/>
-         <h1 className="heading">Heading</h1>
+         <h1 className="heading">Summarised Report of Symptoms and Treatment</h1>
          <div className="symContainer">
              <div style={{width:'50%'}}>
                  <Multiselect
