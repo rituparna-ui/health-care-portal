@@ -134,11 +134,30 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top:8%;
+    margin-top:4%;
     margin-bottom: 5%;
   }
   .preventDiabetes{
     width:50%;
-    margin-top:5%;
+    margin-top:2%;
+    font-size:14px;
     
+  }
+
+  @media screen and (max-width:786px) {
+    #register{
+      width: 60%;
+    }
+    .preventDiabetes{
+      width:70%;
+    }
+  }
+  
+  @media screen and (max-width:786px) {
+    #register{
+      width: 90%;
+    }
+    .preventDiabetes{
+      width:90%;
+    }
   }

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React,{useState} from 'react'
 import Navbar from './Navbar';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 const UserRegistration = () =>{
-
+ const navigate=useNavigate()
   const[formData,setFormData]=useState()
   const[signedUp,setSignedUp]=useState(false)
+  const[error,setError]=useState('')
+  
   const ChangeHandler=(event)=>{
      var{name,value}=event.target
      if('M'===value){
@@ -27,8 +29,11 @@ const UserRegistration = () =>{
     }).then(res=>{
       console.log(res)
       setSignedUp(true)
+     setSignedUp(true)
+      
     }).catch(err=>{
       console.log(err)
+      setError(err.response.data.errors)
     })
   }
  
@@ -42,12 +47,20 @@ const UserRegistration = () =>{
        
        {
          signedUp?(
-           <p style={{textAlign:'center'}}>Sign up successful, Please check your email to verify account</p>
+           <p style={{textAlign:'center'}}>Sign up successful, Please login <a href="/loginUi">here</a></p>
          ):(
           <section className="signup">
           <div className="container mt-5">
               <div className="signup-content">
+             
                 <div className="signup-form">
+                {
+              error.length==0?null:(
+                error.map((key,value)=>(
+                  <p style={{color:'red',fontSize:'12px',display:'block',marginLeft:'auto',marginRight:"auto",width:'60%',marginBottom:'-1px'}}><i class="zmdi zmdi-close-circle material-icons-name mr-2"></i>{key.msg}</p>
+                ))
+              )
+            }
                     
                    <form className="register-form" id="register-form">
                        <div className="form-group">

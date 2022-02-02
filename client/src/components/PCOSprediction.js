@@ -134,11 +134,69 @@ export default function PCOSPrediction(){
      {displayResult ?
      (
       <>
-      <h1>Result</h1>
+      
       {
-       result.map((key,val)=>(
-          <p>{key}</p>
-       ))
+       result.map((key,val)=>{
+          if(key===0){
+            return <div class='infoDiabetic'>
+            <h2 style={{color:'green',fontFamily:'Bebas Neue',fontSize:'60px'}}>You don't have PCOS</h2>
+            <div class='preventDiabetes'>
+              <p>
+              Polycystic Ovary Syndrome (PCOS) is the most common hormonal condition in 
+              reproductive age women. It usually affects up to 10% of women.
+              PCOS can’t be prevented entirely because most cases are genetically acquired, though it doesn't necessarily
+              mean you have PCOS since it may only develop if other risk factors are present in some cases
+              </p>
+
+              <p>
+              Your lifestyle habits greatly contribute to the development of the disease. 
+              All women are encouraged to do the following activities 
+              </p>
+              <ul>
+                <li>Eat a healthy diet</li>
+                <li>exercise to maintain their ideal weight</li>
+                <li> avoid more than moderate alcohol and caffeine</li>
+                <li>Manage stress</li>
+                <li>Women with infertility, 
+              irregular periods or abnormal hair growth should see a physician.</li>
+              </ul>
+              <a href="https://www.openaccessgovernment.org/everything-to-know-about-pcos/74236/">know more...</a>
+            </div>
+          </div>
+          }else if(key===1){
+            return <div class='infoDiabetic'>
+            <h1 style={{color:'red',fontFamily:'Bebas Neue',fontSize:'60px'}}>You have PCOS</h1>
+            <div class='preventDiabetes' >
+              <p>
+              Polycystic Ovary Syndrome (PCOS) is the most common hormonal condition in 
+              reproductive age women. It usually affects up to 10% of women.
+              PCOS can’t be prevented entirely because most cases are genetically acquired, though it doesn't necessarily
+              mean you have PCOS since it may only develop if other risk factors are present in some cases
+              </p>
+
+              <p>
+              Good management of PCOS can greatly reduce the symptoms and the long-term effects on your health. 
+              </p>
+
+              <p>The aim of managing your PCOS includes</p>
+              <ul>
+                <li>Getting care that is individualised to your needs</li>
+                <li>Reducing symptoms</li>
+                <li>Improving psychological and emotional heath</li>
+                <li>preventing related long-term health conditions</li>
+                <li>assisting with fertility and improving pregnancy outcomes, if required.</li>
+              </ul>
+              <p>The keys to achieving good management of PCOS include:</p>
+              <ul>
+                <li>a good understanding of PCOS</li>
+                <li>a healthy approach to eating and physical activity</li>
+                <li>appropriate medical therapies.</li>
+              </ul>
+              <a href="https://www.jeanhailes.org.au/health-a-z/pcos/management-treatment">know more...</a>
+            </div>
+          </div>
+          }
+       })
       }
       </>
 

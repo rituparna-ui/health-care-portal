@@ -98,3 +98,8 @@ body{
     width:60%
   }
 }
+@media screen and (max-width:400px) {
+  .sub-main{
+    width:90%
+  }
+}

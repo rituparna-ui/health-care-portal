@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('./../models/user');
+const Hospital = require('./../models/hospital');
 const errorHelper = require('./../utils/error');
 const OTPGEN = require('./../utils/otp');
 const mailer = require('./../utils/mailer');
@@ -47,7 +48,7 @@ exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email }).select('+password');
     const hospital = await Hospital.findOne({ email }).select('+password');
-    if (!user || !hospital) {
+    if (!user && !hospital) {
       return next(errorHelper('User with given email does not exist', 404, []));
     }
     if (user) {

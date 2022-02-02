@@ -34,8 +34,11 @@
     border-radius: 5px;
     margin-right:10px;
 }
+.iconify{
+    color:white
+}
 .searchName{
-    font-size:14px;
+    font-size:16px;
     font-family:'Poppins';
     color:#00A6A6;
     

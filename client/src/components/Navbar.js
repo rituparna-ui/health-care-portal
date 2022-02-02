@@ -5,6 +5,7 @@ import {setGlobalState,useGlobalState} from './state';
 const Navbar = () =>{
    const isloggedIn=useGlobalState("LoggedIn")[0]
    const userRole=useGlobalState("token")[0]['role']
+   console.log(isloggedIn)
     return (
         <>
         <nav style={{backgroundColor:'white'}} class="navbar navbar-expand-md  ">
@@ -13,7 +14,7 @@ const Navbar = () =>{
 
   
   <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
+    <span style={{backgroundColor:"black"}} class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse " id="collapsibleNavbar">
@@ -28,9 +29,15 @@ const Navbar = () =>{
         <Link style={{color:'black'}} class="nav-link" to="/chronic">Chronic Disease Detection</Link>
       </li>
       {
+<<<<<<< HEAD
         userRole==='USER'?null:<li class="nav-item">
         <Link style={{color:'black'}} class="nav-link" to="/resources">Medical Resource Registration</Link>
       </li>
+=======
+        userRole!=='USER' && isloggedIn ?<li class="nav-item">
+        <Link style={{color:'black'}} class="nav-link" to="/resources">medical Resources</Link>
+      </li>:null
+>>>>>>> cef7e60b2e9694d9fb4f129e521de06d9f317abf
       }
       
       {

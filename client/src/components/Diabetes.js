@@ -132,7 +132,7 @@ export default function Diabetes(){
           result.map((key,val)=>{
             if(key===0){
                return <div class='infoDiabetic'>
-                 <h2 style={{color:'green'}}>You're not diabetic</h2>
+                 <h2 style={{color:'green',fontFamily:'Bebas Neue',fontSize:'60px'}}>You're not diabetic</h2>
                  <div class='preventDiabetes'>
                    <h6>
                       You need to improve your daily lifestyle to keep yourself 
@@ -153,13 +153,14 @@ export default function Diabetes(){
                </div>
             }else if(key==1){
               return <div class='infoDiabetic'>
-                 <h2 style={{color:'orange'}}>You're Pre diabetic</h2>
+                 <h2 style={{color:'orange',fontFamily:'Bebas Neue',fontSize:'60px'}}>You're Pre diabetic</h2>
                  <div class='preventDiabetes'>
                    <h4>
                    Is prediabetes reversible?
                    </h4>
                    Absolutely! You can turn back your prediabetes by adopting lifestyle changes, including:
                    <ul>
+                     
                      <li>Monitor your blood sugar with your doctor. </li>
                      <li>Ensure you get enough sleep.</li>
                      <li>Reduce your stress. </li>
@@ -169,12 +170,13 @@ export default function Diabetes(){
                      <li> Shed a few pounds. </li>
                      
                    </ul>
+                   <p>note ** We recommend you to visit your doctor for necessary medication and proper guidance</p>
                    <a href="https://www.cdc.gov/diabetes/basics/prediabetes.html">read more...</a>
                  </div>
                </div>
             }else if(key===2){
               return <div class='infoDiabetic'>
-              <h2 style={{color:'red'}}>You're Diabetic</h2>
+              <h2 style={{color:'red',fontFamily:'Bebas Neue',fontSize:'60px'}}>You're Diabetic</h2>
               <div class='preventDiabetes'>
                 <h5>
                 Diabetes management requires awareness. Know what makes your blood sugar level rise and fall — and how to control these day-to-day factors.
@@ -205,6 +207,7 @@ export default function Diabetes(){
                  
                   
                 </ul>
+                <p>note ** We recommend you to visit your doctor for necessary medicine and proper guidance</p>
                 <a href="https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-management/art-20047963">read more...</a>
               </div>
             </div>
