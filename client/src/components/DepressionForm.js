@@ -8,8 +8,8 @@ export default function DepressionForm(){
   const[data,setData]=useState("")
   const[submitButton,setSubmitButton]=useState(true)
   const[buttonClick,setButtonClick]=useState(true)
-  const[displayResult,setDisplayResult]=useState(true)
-  const[result,setResult]=useState(['Moderate'])
+  const[displayResult,setDisplayResult]=useState(false)
+  const[result,setResult]=useState()
 
   const initialValue={
     
