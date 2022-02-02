@@ -3,7 +3,7 @@ const { validationResult } = require('express-validator');
 
 const Hospital = require('./../models/hospital');
 const errorHelper = require('./../utils/error');
-const geoCode = require('./../utils/geocode');
+const geoCode = require('./../utils/mygeocode');
 
 exports.request = async (req, res, next) => {
   const errors = validationResult(req);
@@ -68,7 +68,7 @@ exports.approveRequest = async (req, res, next) => {
     hospital.approved = true;
     hospital.location.type = 'Point';
     const coodrs = await geoCode(hospital.address);
-    hospital.location.coordinates = [coodrs.lng, coodrs.lat];
+    hospital.location.coordinates = [coodrs.longitude, coodrs.latitude];
     await hospital.save();
     return res.status(200).json({
       message: 'success',
