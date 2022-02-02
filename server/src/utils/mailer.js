@@ -29,4 +29,25 @@ const OTPmail = (email, OTP, id) => {
   return promise;
 };
 
-module.exports = { OTPmail };
+const approvalMail = (hospital) => {
+  const promise = new Promise((res, rej) => {
+    transporter.sendMail(
+      {
+        from: '"PHC-GEHC" rituw1610@gmail.com',
+        to: hospital.email,
+        subject: 'Approval Status',
+        html: `Your request for hospital registration for ${hospital.name.toUpperCase()} has been approved.Use your email id ( ${hospital.email.toLowerCase()} ) to login to our website<br/>Feel free to contact our support team for an further assistance<br/>Team PHC-GEHC`,
+      },
+      (e) => {
+        if (e) {
+          rej(e);
+        } else {
+          res('approval mail sent');
+        }
+      }
+    );
+  });
+  return promise;
+};
+
+module.exports = { OTPmail, approvalMail };
