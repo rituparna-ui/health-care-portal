@@ -141,13 +141,13 @@ router.post('/depression', (req, res, next) => {
 
 router.post('/disease', (req, res, next) => {
   //const { q3, q5, q10, q13, q16, q17, q21, q24, q26, q31, q34, q37, q38, q42 } =
-    //req.body;
-    const answerState=req.body
-    console.log('hello',answerState)
+  //req.body;
+  const answerState = req.body;
+  console.log('hello', answerState);
 
   axios
     .post('http://localhost:8000/disease', {
-       answerState
+      answerState,
     })
     .then((response) => {
       return res.status(200).json({
@@ -160,16 +160,15 @@ router.post('/disease', (req, res, next) => {
     });
 });
 
-
 router.post('/predict', (req, res, next) => {
   //const { q3, q5, q10, q13, q16, q17, q21, q24, q26, q31, q34, q37, q38, q42 } =
-    //req.body;
-    const answerState=req.body
-    console.log('hello',answerState)
+  //req.body;
+  const answerState = req.body;
+  console.log('hello', answerState);
 
   axios
     .post('http://localhost:8000/predict', {
-       answerState
+      answerState,
     })
     .then((response) => {
       return res.status(200).json({
