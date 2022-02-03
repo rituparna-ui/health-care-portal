@@ -29,7 +29,7 @@ Following are the features to provide a mode of care delivery which can be easil
     
     ```cd ml-server```
 
-6. Install dependencies :
+6. Install dependen9205021433cies :
 
     ``` pip install -r requirements.txt ``` 
 7. Start FastAPI server
@@ -46,3 +46,17 @@ Following are the features to provide a mode of care delivery which can be easil
  
     ```npm start```
 11. You can view the webapp by going to the [localhost:3000](http://127.0.0.1:3000/) on you web browser.
+
+
+## Our Team 🧑‍💻<br />   
+Name - Priyanka Kumari  <br />
+Email - pk3201134@gmail.com . Contact number: `9307452347`
+  
+Name - Rituparna Warwatkar  <br />
+Email - rwarwatkar@gmail.com .  Contact number: `7798516764` <br />
+
+Name - Meghna Singh <br />
+Email - meghnaq223@gmail.com .  Contact number: `9236132164` <br />
+  
+Name - Ishan Acharyya6 <br />
+Email - ishanacharyya6@gmail.com .  Contact number: `9977892116` <br />
