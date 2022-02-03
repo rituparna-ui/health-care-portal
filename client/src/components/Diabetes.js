@@ -88,6 +88,11 @@ export default function Diabetes(){
     BMI=BMI*10000
     console.log(BMI)
     console.log(formData)
+    console.log('age',formData.age)
+    formData.age=((formData.age-18)/5)
+    formData.age=formData.age+1
+    formData.age=Math.floor(formData.age)
+    console.log('age',formData.age)
     
     const{highBp,highCol,checkCol,smoker,stroke,phyAct,fruits,heavyAlcohol,genHlt,menHlt,phyHlt,
     diffWlk,gender,age}=formData

@@ -146,7 +146,7 @@ export default function DepressionForm(){
      )
      :(
        <div class='fullFrame'>
-          <div class='heading mt-3'>Diabetes Prediction</div>
+          <div class='heading mt-3'>Depression Prediction</div>
           <hr style={{width:'30%',backgroundColor:' #F49F0A',borderWidth:'3px' }}></hr>
          
        <div class='center'>

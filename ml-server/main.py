@@ -9,6 +9,7 @@ from sklearn import tree
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import SGDClassifier
 from scipy.stats import mode
+from imblearn.under_sampling import RandomUnderSampler
 
 
 from sklearn.preprocessing import LabelEncoder
@@ -24,9 +25,11 @@ df2=pd.read_csv('depression_data.csv')
 #Diabetes prediction
 X = df.drop(["Diabetes_012"], axis=1)
 Y = df["Diabetes_012"]
+rus=RandomUnderSampler(sampling_strategy={0.0:50,1.0:30,2.0:40})
+x_res,y_res = rus.fit_resample(X,Y)
 
 rfc = RandomForestClassifier()
-rfc.fit(X, Y)
+rfc.fit(x_res, y_res)
 
 
 
