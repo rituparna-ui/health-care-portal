@@ -12,7 +12,7 @@ Following are the features to provide a mode of care delivery which can be easil
 ## How to run 
 1. Clone the repo to your local system
 
-    ```git clone https://github.com/manan2110/MedGuide.git ```
+    ```git clone https://github.com/rituparna-ui/IIIT-Guwahati_Forbidden_403.git ```
 2. Open your terminal and go to server directory
 
     ``` cd server ```
