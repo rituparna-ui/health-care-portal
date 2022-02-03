@@ -1,4 +1,4 @@
-# IIIT-Guwahati_Forbidden_403
+# Healthcare Center website
 This web application is a step towards providing a one stop platform for better virtual healthcare in a hassle-free manner and eliminates any stigma associated with conventional treatment. Our aim is to provide relevant information about diseases and treatments and expanding physician’s ability to care for patients in a quick and accurate manner.
 
 Following are the features to provide a mode of care delivery which can be easily accessed from the comfort of home:
@@ -12,7 +12,7 @@ Following are the features to provide a mode of care delivery which can be easil
 ## How to run 
 1. Clone the repo to your local system
 
-    ```git clone https://github.com/rituparna-ui/IIIT-Guwahati_Forbidden_403.git ```
+    ```git clone https://github.com/rituparna-ui/IIIT-Guwahati_pk3201134_3259.git ```
 2. Open your terminal and go to server directory
 
     ``` cd server ```
