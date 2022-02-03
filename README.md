@@ -39,10 +39,10 @@ Following are the features to provide a mode of care delivery which can be easil
 
     ```cd client ```
 
-7. Install packages
+9. Install packages
 
     ```npm i```
-8. Start react server :
+10. Start react server :
  
     ```npm start```
-9. You can view the webapp by going to the [localhost:3000](http://127.0.0.1:3000/) on you web browser.
+11. You can view the webapp by going to the [localhost:3000](http://127.0.0.1:3000/) on you web browser.
