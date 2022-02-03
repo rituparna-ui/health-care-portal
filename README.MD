@@ -50,13 +50,17 @@ Following are the features to provide a mode of care delivery which can be easil
 
 ## Our Team 🧑‍💻<br />   
 Name - Priyanka Kumari  <br />
-Email - pk3201134@gmail.com . Contact number: `9307452347`
+Email - pk3201134@gmail.com . Contact number: `9307452347` <br />
+Contribution - Frontend, Management <br />
   
 Name - Rituparna Warwatkar  <br />
 Email - rwarwatkar@gmail.com .  Contact number: `7798516764` <br />
+Contribution - Backend <br />
 
 Name - Meghna Singh <br />
 Email - meghnaq223@gmail.com .  Contact number: `9236132164` <br />
+Contribution - Frontend, Content-Writing <br />
   
 Name - Ishan Acharyya6 <br />
 Email - ishanacharyya6@gmail.com .  Contact number: `9977892116` <br />
+Contribution - Machine Learning <br />
