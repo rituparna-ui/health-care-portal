@@ -12,7 +12,7 @@ Following are the features to provide a mode of care delivery which can be easil
 ## How to run 
 1. Clone the repo to your local system
 
-    ```git clone https://github.com/rituparna-ui/IIIT-Guwahati_pk3201134_3259.git ```
+    ```git clone https://github.com/rituparna-ui/health-care-portal.git ```
 2. Open your terminal and go to server directory
 
     ``` cd server ```
@@ -29,7 +29,7 @@ Following are the features to provide a mode of care delivery which can be easil
     
     ```cd ml-server```
 
-6. Install dependen9205021433cies :
+6. Install dependencies :
 
     ``` pip install -r requirements.txt ``` 
 7. Start FastAPI server
@@ -45,7 +45,7 @@ Following are the features to provide a mode of care delivery which can be easil
 10. Start react server :
  
     ```npm start```
-11. You can view the webapp by going to the [localhost:3000](http://127.0.0.1:3000/) on you web browser.
+11. You can use the webapp by visiting [localhost:3000](http://127.0.0.1:3000/) in you web browser.
 
 
 ## Our Team 🧑‍💻<br />   
